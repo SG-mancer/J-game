@@ -3,7 +3,7 @@
 # > select school,
 label beginning:
     # background of Kanbogon
-    $ week_count = -15
+    $ week_count = 2
     o "Sad that next year we will be pulling this plant down next year. I don't think Kanbogon will survive.\nDid they offer you much of a {b}redundancy{/b} package?"
     z "$37,000. I was expecting the just 16 weeks pay minimum for 9 years.\nBut the boss said something about how I had {i}inspired him by moving here at 18 and working hard as an apprentice.{/i}"
     o "This was your first job wasn't it Jack?\nYou came here right after high school?"

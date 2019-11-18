@@ -92,6 +92,15 @@ label start:
 
     $ week_count += 1
     call monday
+    z "that is great"
+    # adventure in Japan 
+    call timetable
+    call studyCal
+    call weekend
+
+    $ week_count += 1
+    call monday
+    z "week 2 over"
 
 return
 
@@ -103,29 +112,30 @@ label timetable:
     z "you are here in timetable ok"
     window hide
     python:
+        study = [0,0,0,0,0] # Zeros the choices, so they don't default to last weeks (what could get around O stat penalty)
         repeat = True
         while repeat:
             if earlyBird == True:
                 ui.hbox(xalign=0.1, yalign=0.1)
                 ui.text("Early Morning    ")
                 for x in studMeths:
-                    if sMfocus[x] == 0 and ment > 0 or sMfocus[x] == 1 and soci > 0 or sMfocus[x] == 2 and phys > 0:
-                        choicebutton(x, 'studyE', x)
+                    if sMfocus[x] == 0 and ment > 0 or sMfocus[x] == 1 and soci > 0 or sMfocus[x] == 2 and phys > 0 or sMfocus[x] == 3:
+                        choicebutton(x+'   ', 'studyE', x)
                 ui.close()
 
             if timeMan == True:
                 ui.hbox(xalign=0.1, yalign=0.2)
                 ui.text("Morning         ")
                 for x in studMeths:
-                    if sMfocus[x] == 0 and ment > 0 or sMfocus[x] == 1 and soci > 0 or sMfocus[x] == 2 and phys > 0:
-                        choicebutton(x, 'studyD', x)
+                    if sMfocus[x] == 0 and ment > 0 or sMfocus[x] == 1 and soci > 0 or sMfocus[x] == 2 and phys > 0 or sMfocus[x] == 3:
+                        choicebutton(x+'   ', 'studyD', x)
                 ui.close()
 
             ui.hbox(xalign=0.1, yalign =0.3)
             ui.text("Morning          ")                
             for x in studMeths:
-                if sMfocus[x] == 0 and ment > 0 or sMfocus[x] == 1 and soci > 0 or sMfocus[x] == 2 and phys > 0:
-                        choicebutton(x, 'studyA', x)
+                if sMfocus[x] == 0 and ment > 0 or sMfocus[x] == 1 and soci > 0 or sMfocus[x] == 2 and phys > 0 or sMfocus[x] == 3:
+                        choicebutton(x+'   ', 'studyA', x)
             ui.close()
 
             ui.hbox(xalign=0.1, yalign=0.4)
@@ -135,24 +145,24 @@ label timetable:
             ui.hbox(xalign=0.1, yalign=0.5)
             ui.text("Evening          ")
             for x in studMeths:
-                if sMfocus[x] == 0 and ment > 0 or sMfocus[x] == 1 and soci > 0 or sMfocus[x] == 2 and phys > 0:
-                        choicebutton(x, 'studyB', x)
+                if sMfocus[x] == 0 and ment > 0 or sMfocus[x] == 1 and soci > 0 or sMfocus[x] == 2 and phys > 0 or sMfocus[x] == 3:
+                        choicebutton(x+'   ', 'studyB', x)
             ui.close()
   
             if timeMan == True:
                 ui.hbox(xalign=0.1, yalign=0.6)
                 ui.text("Night            ")
                 for x in studMeths:
-                    if sMfocus[x] == 0 and ment > 0 or sMfocus[x] == 1 and soci > 0 or sMfocus[x] == 2 and phys > 0:
-                        choicebutton(x, 'studyC', x)
+                    if sMfocus[x] == 0 and ment > 0 or sMfocus[x] == 1 and soci > 0 or sMfocus[x] == 2 and phys > 0 or sMfocus[x] == 3:
+                        choicebutton(x+'   ', 'studyC', x)
                 ui.close()
 
             if timeMan == True and earlyBird == False:  #Study E is for non-early bird players
                 ui.hbox(xalign=0.1, yalign=0.7)
                 ui.text("Late Night       ")
                 for x in studMeths:
-                    if sMfocus[x] == 0 and ment > 0 or sMfocus[x] == 1 and soci > 0 or sMfocus[x] == 2 and phys > 0:
-                        choicebutton(x, 'studyE', x)
+                    if sMfocus[x] == 0 and ment > 0 or sMfocus[x] == 1 and soci > 0 or sMfocus[x] == 2 and phys > 0 or sMfocus[x] == 3:
+                        choicebutton(x+'   ', 'studyE', x)
                 ui.close()
 
             ui.textbutton('Done', clicked=ui.returns(False), xalign=0.5, yalign=0.8)
