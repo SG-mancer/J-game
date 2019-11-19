@@ -42,12 +42,20 @@ screen healthscreen():
             bar value AnimatedValue(value=phys, range=max_stat, delay=2.0)
 
             # Note: we only show totals for Talent, Skill and Knoweldge
-            text "Talent:"
-            bar value AnimatedValue(value=(Talen[0]+Talen[1]+Talen[2]+Talen[3]), range=100, delay=2.0)
-            text "Skill:"
-            bar value AnimatedValue(value=(Skill[0]+Skill[1]+Skill[2]+Skill[3]), range=100, delay=2.0)
-            text "Kowledge:"
-            bar value AnimatedValue(value=(Knowl[0]+Knowl[1]+Knowl[2]+Knowl[3]), range=100, delay=2.0)
+            if ((Talen[0]+Talen[1]+Talen[2]+Talen[3])/100 < 0) and ((Skill[0]+Skill[1]+Skill[2]+Skill[3])/100 < 0) and ((Knowl[0]+Knowl[1]+Knowl[2]+Knowl[3])/100 < 0):
+                text "Talent:"
+                bar value AnimatedValue(value=(Talen[0]+Talen[1]+Talen[2]+Talen[3]), range=100, delay=2.0)
+                text "Skill:"
+                bar value AnimatedValue(value=(Skill[0]+Skill[1]+Skill[2]+Skill[3]), range=100, delay=2.0)
+                text "Kowledge:"
+                bar value AnimatedValue(value=(Knowl[0]+Knowl[1]+Knowl[2]+Knowl[3]), range=100, delay=2.0)
+            else:
+                text "Talent:"
+                bar value AnimatedValue(value=(Talen[0]+Talen[1]+Talen[2]+Talen[3]), range=200, delay=2.0)
+                text "Skill:"
+                bar value AnimatedValue(value=(Skill[0]+Skill[1]+Skill[2]+Skill[3]), range=300, delay=2.0)
+                text "Kowledge:"
+                bar value AnimatedValue(value=(Knowl[0]+Knowl[1]+Knowl[2]+Knowl[3]), range=500, delay=2.0)                
             text u"Cash:  \n¥[yenYen]"
             
 
@@ -80,26 +88,32 @@ label start:
     # flags for extra study times
     $ timeMan = False #gets extra study sessions (but beware of burnout)
     $ earlyBird = True
+
+    # flags for weekend events
     $ burnout = False #burnout happens when you go into negative for ment. (you can not study too hard)
+    $ classHW = False #have you done homework this week
+    $ Marathon = False #enter Tokyo Marrathon
+    $ MarathonPrac = 0 #marathon practice
     
 
-    call beginning
+    # call beginning
 
     # adventure in Japan 
     call timetable
     call studyCal
     call weekend
 
-    $ week_count += 1
-    call monday
-    z "that is great"
+    while week_count < 100:
+        #block of code to run      #block of code to run
+        $ week_count += 1
+        call monday
     # adventure in Japan 
-    call timetable
-    call studyCal
-    call weekend
+        call timetable
+        call studyCal
+        call weekend
 
-    $ week_count += 1
-    call monday
+        z "week [week_count].\n[Talen],[Skill],[Knowl]"
+
     z "week 2 over"
 
 return
@@ -186,6 +200,9 @@ label weekend:
         #
         return
     else: #handle the weekend BONUS event
+        if classHW == True:
+            # Get the class Homework bonus
+            pass
         #
         # TODO: weekend events (JLPT will live here too)
         #
@@ -194,6 +211,7 @@ return
 
 # ---------------
 label monday:
+    $ classHW = False #set done homework to false 
     # check if bonus should be awarded
     if ment == soci == phys == max_stat:
         $ stat_bonus += 1
