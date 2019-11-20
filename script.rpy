@@ -96,6 +96,7 @@ label start:
     $ MarathonPrac = 0 #marathon practice
     
 
+    call test1
     # call beginning
 
     # adventure in Japan 
@@ -202,6 +203,18 @@ label weekend:
     else: #handle the weekend BONUS event
         if classHW == True:
             # Get the class Homework bonus
+            if (Skill[0]+Skill[1]+Skill[2]) > (Knowl[0]+Knowl[1]+Knowl[2]):
+                if Knowl[2] > (Knowl[0]+ Knowl[1]):
+                    $ Knowl[0] += 1
+                    $ Knowl[1] += 1
+                else:
+                    $ Knowl[2] += 1
+            else:
+                $ Skill[2] += 1
+                if Skill[1] > Skill[0]:
+                    $ Skill[0] += 1
+                else:
+                    $ Skill[1] += 1
             pass
         #
         # TODO: weekend events (JLPT will live here too)
