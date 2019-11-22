@@ -1,10 +1,15 @@
 # this is called to initiate studMeth and sMcounts (only once at start of game) - it is here to modulise the game
 label init_study:
     $ studMeths = ['jog','nap','rev_notes','browse_web'] #The options available to player at start
+    #$ studMeths = ['jog','nap','rev_notes','rev_class','browse_web','flash_cards','homework','SRS','shadowing','eConvo','Dino.jp','Noteo','Manga_Study','PlanetJapan','CopyCat','J_quiz','group','eChat','WnoMori']  #full list
     # List of study methods and count done, and the primary cost (ment(0), soci(1) or phys(2), none(3)) for the activity
     $ sMcounts = {'0':0, 'jog':0,'nap':0,'rev_notes':0,'rev_class':0,'browse_web':0,'flash_cards':0,'homework':0,'SRS':0,'shadowing':0,'eConvo':0,'Dino.jp':0,'Noteo':0,'Manga_Study':0,'PlanetJapan':0,'CopyCat':0,'J_quiz':0,'group':0,'eChat':0,'WnoMori':0}
     $ sMfocus = {'0':0, 'jog':2,'nap':3,'rev_notes':0,'rev_class':0,'browse_web':1,'flash_cards':0,'homework':0,'SRS':0,'shadowing':0,'eConvo':1,'Dino.jp':0,'Noteo':0,'Manga_Study':0,'PlanetJapan':0,'CopyCat':0,'J_quiz':1,'group':1,'eChat':1,'WnoMori':3}
-    $ FlashCards = 0 #Flashcard set (for flash card study),
+    $ FlashCards = 0 #Flashcard set (for flash card study)
+
+    $ termNo = 1 #term number (it increases by incriments each time you finish a term and pass test)
+    $ testWeeks = [12,25,37,49,62,75,89,100] # weeks TermExam will occur. week before holidays in Yr1, weekend before holidays in Yr2
+    $ Txams = {1:[0,0,0,0,0,0,0],2:[0,0,0,0,0,0,0],3:[0,0,0,0,0,0,0],4:[0,0,0,0,0,0,0],5:[0,0,0,0,0,0,0],6:[0,0,0,0,0,0,0],7:[0,0,0,0,0,0,0],8:[0,0,0,0,0,0,0],9:[0,0,0,0,0,0,0]} #for TermExams [Acacemics, Reading, Listening, Pronou, Vocab, Gram, Kanji]
 return
 
 # ---------------
@@ -127,7 +132,7 @@ label studyCal:
                                 else:
                                     studMeths.append('SRS')
                             else:
-                                studyMeths.append('eConvo')
+                                studMeths.append('eConvo')
                         else:
                             studMeths.append('flash_cards')
                     continue
@@ -289,4 +294,5 @@ label studyCal:
             $ soci = -1
         if phys < 0:
             $ phys = -1
-return
+        z "calculated"
+        return
