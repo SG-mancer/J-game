@@ -3,6 +3,9 @@
 define z = Character("Jack")
 define o = Character("Oslo")
 define t = Character("Sensei Teacher")
+define x = Character("narrator")
+
+#background images
 image bg tokyonight = "ausflight.png"
 
 # MULTIPLE CHOICE Form - From: https://lemmasoft.renai.us/forums/viewtopic.php?t=2899 
@@ -70,18 +73,17 @@ label start:
     $ Talen = [0,0,0,0] #Academics, Athletics, Art, Science
     $ Skill = [0,0,0,0] #Reading, Listening, Pronounciation, Sport
     $ Knowl = [0,0,0,0] #Vocab, Grammar, Kanji, General
+    $ yenYen = 3375000 #this is before redundancy 6672330 after?
+    
     $ stat_bonus = 0 #number of weeks you started with max_stats in ment, soci and phys... reward_???
+
     $ week_count = 0 #number of weeks played
     $ burnCount = 0 #number of burnouts
     $ burnoutWarn = 0 #number of burnout warnings
-    $ yenYen = 3375000 #this is before redundancy 6672330 after?
     $ school = 0 #the school selected
 
-    call init_study
+    call init_study #initialises many study variables
     
-    # studying
-    $ study = [0,0,0,0,0] # This is populated for cycling through the study options
-
     # flags for extra study times
     $ timeMan = False #gets extra study sessions (but beware of burnout)
     $ earlyBird = True
@@ -93,28 +95,30 @@ label start:
     $ MarathonPrac = 0 #marathon practice
     
 
-    #call test1
     # # # # # # # # # # #
     # adventures in Japan
     # # # # # # # # # # #
 
-    #call beginning #the story begins
+    call beginning #the story begins
+    call tutorial #a tutorial for a new player
 
     while week_count < 101:
-        call monday
+        
+        call monday #handles flags, counts for week
+        call ambient #background music for season
+        call story #story events...
+
         if week_count in [5,13,14,20,26,27,38,39,50,51,52,57,64,65,71,77,78,89,90,102]:
-            # holidays
-            z "holiday"
+            # holidays has no timetable, class
+            call holidays
+            call weekend
         else:
             # classes
             call timetable
             call studyCal
-            z "weekend soon"
             call weekend
-            "weekend"
-        
 
-return
+    return
 
 
 

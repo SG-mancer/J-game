@@ -1,7 +1,18 @@
 
+# Handle if the story has a scene here
+label story:
+    t "story goes here"
+    return
+
 # Oslo (o) and Jack (z)*the player chat about the plant shutting down...
 # > select school,
 label beginning:
+    show text "Lost in Transition" at truecenter
+    with dissolve
+    pause 1
+    hide text
+    with dissolve
+
     # background of Kanbogon
     $ week_count = 2
     o "Sad that next year we will be pulling this plant down next year. I don't think Kanbogon will survive.\nDid they offer you much of a {b}redundancy{/b} package?"

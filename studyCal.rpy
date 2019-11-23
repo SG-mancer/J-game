@@ -10,6 +10,7 @@ label init_study:
     $ termNo = 1 #term number (it increases by incriments each time you finish a term and pass test)
     $ testWeeks = [12,25,37,49,62,75,89,100] # weeks TermExam will occur. week before holidays in Yr1, weekend before holidays in Yr2
     $ Txams = {1:[0,0,0,0,0,0,0],2:[0,0,0,0,0,0,0],3:[0,0,0,0,0,0,0],4:[0,0,0,0,0,0,0],5:[0,0,0,0,0,0,0],6:[0,0,0,0,0,0,0],7:[0,0,0,0,0,0,0],8:[0,0,0,0,0,0,0],9:[0,0,0,0,0,0,0]} #for TermExams [Acacemics, Reading, Listening, Pronou, Vocab, Gram, Kanji]
+    $ jlptWeeks = [13,35,65,87]
 return
 
 # ---------------

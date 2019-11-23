@@ -150,6 +150,11 @@ label weekend:
     #check if burnout, if the player is burnt out. They miss the weekend, recover 2. If they are less than 0 still it will effect next week's choices
 
     # CHECK FOR BURNOUT and handle
+    if week_count+5 in jlptWeeks: #enter JLPT 5 weeks before the exam
+        call JLPTEntry
+    if week_count-4 in jlptWeeks: #recieve JLPT Results 4 weeks after exam 
+        call JLPTResult 
+
     if burnout == True:
         $ burnCount += 1
         $ ment += 2
@@ -163,13 +168,12 @@ label weekend:
     else: #handle classHW bonus and termExams.
         call HomeWorkCheck
         call Learning
-        z "checking week"
+        
         if week_count in testWeeks:
             z "exam"
             call TermExam
-        #
-        # TODO: weekend events (JLPT will live here too)
-        #
+        if week_count in jlptWeeks:
+            call JLPTExam
         call WeekEndEvent
         return
 return
@@ -196,4 +200,4 @@ label HomeWorkCheck:
 label Learning:
 
     return
-    
+
