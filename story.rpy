@@ -7,9 +7,9 @@ label story:
 # Oslo (o) and Jack (z)*the player chat about the plant shutting down...
 # > select school,
 label beginning:
-    show text "Lost in Transition" at truecenter
+    show text "The incidents descibed in this game never took place.\nSo many people travel to and study in Japan it is likely\nthat some will find their names in the following text.\n\nNo reference is intended to anyone living or dead." at truecenter
     with dissolve
-    pause 1
+    pause 10
     hide text
     with dissolve
 
