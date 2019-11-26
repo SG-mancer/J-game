@@ -166,7 +166,7 @@ label JLPTEntry:
 
 label JLPTResult:
     # Report the JLPT.
-    t "Your JLPT Results are back:\n Vocab: [JRseu[0]], Grammar: [JRseu[1]], Reading: [JRseu[2]]. --[JRseu[3]]"
+    t "Your JLPT Results are back:\n Vocab: [JResu[0]], Grammar: [JResu[1]], Reading: [JResu[2]]. --[JResu[3]]"
 
     if JResu[3] == 'Pass':
         #JLPT Pass reward

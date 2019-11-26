@@ -1,6 +1,6 @@
 # this is called to initiate studMeth and sMcounts (only once at start of game) - it is here to modulise the game
 label init_study:
-    $ studMeths = ['jog','nap','rev_notes','browse_web'] #The options available to player at start
+    $ studMeths = ['jog','nap','rev_notes','browse_web','homework'] #The options available to player at start
     #$ studMeths = ['jog','nap','rev_notes','rev_class','browse_web','flash_cards','homework','SRS','shadowing','eConvo','Dino.jp','Noteo','Manga_Study','PlanetJapan','CopyCat','J_quiz','group','eChat','WnoMori']  #full list
     # List of study methods and count done, and the primary cost (ment(0), soci(1) or phys(2), none(3)) for the activity
     $ sMcounts = {'0':0, 'jog':0,'nap':0,'rev_notes':0,'rev_class':0,'browse_web':0,'flash_cards':0,'homework':0,'SRS':0,'shadowing':0,'eConvo':0,'Dino.jp':0,'Noteo':0,'Manga_Study':0,'PlanetJapan':0,'CopyCat':0,'J_quiz':0,'group':0,'eChat':0,'WnoMori':0}
