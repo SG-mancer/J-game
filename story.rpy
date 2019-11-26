@@ -1,5 +1,5 @@
 
-# Handle if the story has a scene here
+# Handle if the story has a scene here - called every week
 label story:
     t "story goes here"
     return

@@ -198,6 +198,39 @@ label HomeWorkCheck:
 # ---------------
 # The information you learn by turning up to class
 label Learning:
+    if school == 0: #Shinjuku
+        $ Skill[0] += 1
+        $ Knowl[1] += 1
+        $ Knowl[2] += 1 
+        
+    elif school == 1: #Takadanobaba
+        $ Skill[0] += 1
+        if Skill[2] < 100:
+                $ Skill[2] += 1
+        else:
+            if week_count % 2 == 0:
+                $ Talen[0] += 1
+            else:
+                $ Knowl[2] += 1
+        if week_count % 2 == 0:
+            $ Knowl[1] += 1
+        else:
+            $ Skill[1] += 1
+    else: #Osaki
+        if Skill[2] < 100:
+            $ Skill[2] += 1
+        else:
+            if week_count% 2 == 0:
+                $ Skill[0] += 1
+            else:
+                $ Talen[0] += 1
+        if termNo < 3:
+            $ Knowl[0] += 1
+        else:
+            $ Knowl[2] += 1
+        if week_count% 3 == 0:
+            $ Skill[0] += 1
+        $ Knowl[1] += 1
 
     return
 

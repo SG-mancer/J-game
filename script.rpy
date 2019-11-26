@@ -105,7 +105,7 @@ label start:
     while week_count < 101:
         
         call monday #handles flags, counts for week
-        call ambient #background music for season
+        #call ambient #background music for season
         call story #story events...
 
         if week_count in [5,13,14,20,26,27,38,39,50,51,52,57,64,65,71,77,78,89,90,102]:

@@ -9,8 +9,9 @@ label init_study:
 
     $ termNo = 1 #term number (it increases by incriments each time you finish a term and pass test)
     $ testWeeks = [12,25,37,49,62,75,89,100] # weeks TermExam will occur. week before holidays in Yr1, weekend before holidays in Yr2
-    $ Txams = {1:[0,0,0,0,0,0,0],2:[0,0,0,0,0,0,0],3:[0,0,0,0,0,0,0],4:[0,0,0,0,0,0,0],5:[0,0,0,0,0,0,0],6:[0,0,0,0,0,0,0],7:[0,0,0,0,0,0,0],8:[0,0,0,0,0,0,0],9:[0,0,0,0,0,0,0]} #for TermExams [Acacemics, Reading, Listening, Pronou, Vocab, Gram, Kanji]
+    $ Txams = {0:{1:[14,22,11,21,30,30,27],2:[24,42,21,31,57,56,50],3:[34,62,31,41,81,81,76],4:[44,82,41,51,103,103,108],5:[54,102,51,61,121,121,140],6:[64,122,61,71,140,140,173]},7:[74,142,71,81,158,158,205],8:[84,162,81,91,176,176,237],9:[100,200,100,110,209,210,297],10:[100,200,100,110,209,210,297],1:{1:[10,20,15,25,25,25,15],2:[20,40,30,50,50,45,25],3:[30,60,45,65,75,65,45],4:[40,80,62,85,100,85,65],5:[50,100,75,100,110,100,90],6:[60,120,90,110,125,125,120],7:[70,140,100,120,140,140,140],8:[80,160,120,130,150,150,170],9:[90,180,130,140,170,170,200],10:[100,200,150,150,180,180,220]},2:{1:[10,14,11,29,36,33,16],2:[20,28,21,49,72,59,29],3:[30,41,31,69,104,84,45],4:[40,54,41,89,126,108,67],5:[50,70,50,100,148,130,90],6:[60,88,60,110,170,150,110],7:[70,100,70,120,190,180,130],8:[80,120,80,130,210,200,150],9:[90,140,90,140,230,220,170],10:[100,160,100,150,250,250,190]}} #for TermExams [Acacemics, Reading, Listening, Pronou, Vocab, Gram, Kanji]
     $ jlptWeeks = [13,35,65,87]
+    $ luckyNo = 0 #set to 0,1,2 - used for x%3 == luckyNo or greater events to make them quazi random?
 return
 
 # ---------------
@@ -28,7 +29,7 @@ label studyCal:
                     if sMcounts[x] > 10 or Talen[1] > 5:
                         phys -= 1
                         ment += 2
-                        if (sMcounts[x] % 15) == 0: #every 15 jogs increases your athletics
+                        if (sMcounts[x] % 15) == luckyNo: #every 15 jogs increases your athletics
                             Talen[1] += 1
                         if week_count == 27 or week_count == 79:
                             Marathon = True
@@ -42,12 +43,12 @@ label studyCal:
                     elif Talen[1] > 5:
                         phys -= 1
                         ment += 1
-                        if (sMcounts[x] % 5) == 0: #every 5 jogs increases your athletics
+                        if (sMcounts[x] % 5) == luckyNo: #every 5 jogs increases your athletics
                             Talen[1] += 1
                     else: #starting to jog costs 2 phys and gives 1 ment
                         phys -= 2
                         ment += 1
-                        if (sMcounts[x] % 4) == 0: #every 4 jogs increases your athletics
+                        if (sMcounts[x] % 4) == luckyNo: #every 4 jogs increases your athletics
                             Talen[1] += 1
                     continue
 
@@ -72,7 +73,7 @@ label studyCal:
                     Knowl[0] += 1
                     if sMcounts[x]%2 == 0:
                         Knowl[1] += 1
-                    if sMcounts[x]%13 == 0:
+                    if sMcounts[x]%13 == luckyNo:
                         Talen[0] += 1
                         Skill[0] += 1
                         Skill[1] += 1
@@ -103,7 +104,7 @@ label studyCal:
                     # browsing the web, if you are focused will improve your listening and vocab. If lucky you will find new resources!!
                     soci -= 1
                     Skill[3] += 1 #you find general info, no Japanese...
-                    if sMcounts[x]%3 == 0:
+                    if sMcounts[x]%3 == luckyNo:
                         #TODO 33% chance of finding new web resources for studying online...
                         if 'flash_cards' in studMeths:
                             if 'eConvo' in studMeths:
@@ -144,7 +145,7 @@ label studyCal:
                     if FlashCards == 0: #if no flashcard set, improves Grammar and Vocab. and Kanji every 4th use.
                         Knowl[0] += 1
                         Knowl[1] += 1
-                        if sMcounts[x]%4 == 0:
+                        if sMcounts[x]%4 == luckyNo:
                             Knowl[2] += 1
                     elif FlashCards == 1: #with Flashcard set 1, improves
                         #
@@ -174,7 +175,7 @@ label studyCal:
                             else:
                                 Knowl[2] += 1
                     else:
-                        if sMcounts[x]%3 == 0: #every 3 weeks improve Academics (becauase HW is hard at first)
+                        if sMcounts[x]%3 == luckyNo: #every 3 weeks improve Academics (becauase HW is hard at first)
                             Talen[0] += 1
                     continue
 
@@ -186,10 +187,10 @@ label studyCal:
                             Knowl[2] += 1
                             if Knowl[2]/50 > 1: #after Kanji 50 improve faster
                                 Knowl[2] += 1
-                    if Knowl[0]/4 > 1 and sMcounts[x]%3 == 0: #Vocab
+                    if Knowl[0]/4 > 1 and sMcounts[x]%3 == luckyNo: #Vocab
                         if Knowl[0]/70 < 1: #stops at Vocab 70
                             Knowl[0] += 1
-                    if Knowl[1]/8 > 1 and sMcounts[x]%5 == 0: #Grammar
+                    if Knowl[1]/8 > 1 and sMcounts[x]%5 == luckyNo: #Grammar
                         Knowl[1] += 1
                         if Knowl[1]/50 < 1: #stops at 50
                             Knowl[1] += 1
@@ -223,7 +224,7 @@ label studyCal:
                         yenYen -= 3000
                     elif x == 'WnoMori':
                         soci += 1 #Waseda No Mori, is free and doesn't cost social. Also, raises reading every 3 visits
-                        if (sMcounts[x] % 3) == 0:
+                        if (sMcounts[x] % 3) == luckyNo:
                             Skill[0] += 1
                     else:
                         yenYen -= 10000 #Big cost, not sure how someone gets here yet.
@@ -295,5 +296,5 @@ label studyCal:
             $ soci = -1
         if phys < 0:
             $ phys = -1
-        z "calculated"
+        
         return
