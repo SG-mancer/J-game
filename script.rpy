@@ -1,7 +1,7 @@
 ﻿
 # declared characters:
-define z = Character("Jack")
-define o = Character("Oslo")
+define z = Character("Jack") # The player character. 
+define o = Character("Oslo") # Jack's best friend, though he is 15 years older than him and they don't hang out.
 define t = Character("Sensei Teacher")
 define x = Character("narrator")
 
