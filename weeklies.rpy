@@ -6,6 +6,12 @@ label monday:
     # check if bonus should be awarded
     if ment == soci == phys == max_stat:
         $ stat_bonus += 1
+        $ y = 0
+        while y < 4: #Give a bonus point in each language skill
+            $ Skill[y] += 1
+            $ Talen[y] += 1
+            $ Knowl[y] += 1
+            $ y += 1
     # give an extra point in each stat (if not already max_stat)
     if ment < max_stat:
         $ ment += 1
@@ -23,12 +29,13 @@ label timetable:
     scene bg tokyonight
     show text "## Week [week_count] timetable ##" at top
     python:
-        study = ['0','0','0','0','0'] # Zeros the choices, so they don't default to last weeks (what could get around O stat penalty)
-        studyA = '0' #it was easier to just handle these strings for the options...
-        studyB = '0'
-        studyC = '0'
-        studyD = '0'
-        studyE = '0'
+        if ment < 1 or phys < 1 or soci < 1:
+            study = ['0','0','0','0','0'] # Zeros the choices, so they don't default to last weeks (what could get around O stat penalty)
+            studyA = '0' #it was easier to just handle these strings for the options...
+            studyB = '0'
+            studyC = '0'
+            studyD = '0'
+            studyE = '0'
         repeat = True
         if len(studMeths) > 10:
             if len(studMeths) > 15:

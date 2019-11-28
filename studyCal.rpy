@@ -1,5 +1,11 @@
 # this is called to initiate studMeth and sMcounts (only once at start of game) - it is here to modulise the game
 label init_study:
+    $ study = ['0','0','0','0','0']
+    $ studyA = '0' #it was easier to just handle these strings for the options...
+    $ studyB = '0'
+    $ studyC = '0'
+    $ studyD = '0'
+    $ studyE = '0'
     $ studMeths = ['jog','nap','rev_notes','browse_web','homework'] #The options available to player at start
     #$ studMeths = ['jog','nap','rev_notes','rev_class','browse_web','flash_cards','homework','SRS','shadowing','eConvo','Dino.jp','Noteo','Manga_Study','PlanetJapan','CopyCat','J_quiz','group','eChat','WnoMori']  #full list
     # List of study methods and count done, and the primary cost (ment(0), soci(1) or phys(2), none(3)) for the activity
