@@ -73,7 +73,7 @@ label start:
     $ Talen = [0,0,0,0] #Academics, Athletics, Art, Science
     $ Skill = [0,0,0,0] #Reading, Listening, Pronounciation, Sport
     $ Knowl = [0,0,0,0] #Vocab, Grammar, Kanji, General
-    $ yenYen = 3375000 #this is before redundancy 6672330 after?
+    $ yenYen = 3375000 #this is before redundancy 6672330 after? (random 70-85yen in the dollar?)
     
     $ stat_bonus = 0 #number of weeks you started with max_stats in ment, soci and phys... reward_???
 
@@ -84,7 +84,7 @@ label start:
 
     call init_study #initialises many study variables
     
-    # flags for extra study times
+    # flags for extra study times (effects layout of Timetable in weeklies.rpy/timetable)
     $ timeMan = False #gets extra study sessions (but beware of burnout)
     $ earlyBird = True
 
@@ -98,6 +98,8 @@ label start:
     # # # # # # # # # # #
     # adventures in Japan
     # # # # # # # # # # #
+
+    ## need to use jump less and more call (if no need to loop back)
 
     call beginning #the story begins
     call tutorial #a tutorial for a new player
@@ -119,9 +121,3 @@ label start:
             call weekend
 
     return
-
-
-
-
-            
-

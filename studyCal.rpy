@@ -1,4 +1,8 @@
 # this is called to initiate studMeth and sMcounts (only once at start of game) - it is here to modulise the game
+
+## Need to simplify this all...
+## Pick starting studyMeths in beginning - 
+
 label init_study:
     $ study = ['0','0','0','0','0']
     $ studyA = '0' #it was easier to just handle these strings for the options...

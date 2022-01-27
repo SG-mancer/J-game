@@ -62,24 +62,8 @@ label timetable:
                         choicebutton('{size=[Siz]}[colorz] '+x+'{/size} ', 'studyE', x)
                 ui.close()
 
-            if timeMan == True:
-                ui.hbox(xalign=0.1, yalign=0.2)
-                ui.text("Morning         ")
-                for x in studMeths:
-                    if sMfocus[x] == 0:
-                        colorz = "{color=#6699ff}█{/color}"
-                    elif sMfocus[x] == 1:
-                        colorz = "{color=#33cc33}█{/color}"
-                    elif sMfocus[x] == 2:
-                        colorz = "{color=#ff3300}█{/color}"
-                    else:
-                        colorz = "{color=#e6e6e6}█{/color}"
-                    if sMfocus[x] == 0 and ment > 0 or sMfocus[x] == 1 and soci > 0 or sMfocus[x] == 2 and phys > 0 or sMfocus[x] == 3:
-                        choicebutton('{size=[Siz]}[colorz] '+x+'{/size} ', 'studyD', x)
-                ui.close()
-
-            ui.hbox(xalign=0.1, yalign =0.3)
-            ui.text("Morning          ")                
+            ui.hbox(xalign=0.1, yalign=0.2)
+            ui.text("Morning          ")
             for x in studMeths:
                 if sMfocus[x] == 0:
                     colorz = "{color=#6699ff}█{/color}"
@@ -90,8 +74,24 @@ label timetable:
                 else:
                     colorz = "{color=#e6e6e6}█{/color}"
                 if sMfocus[x] == 0 and ment > 0 or sMfocus[x] == 1 and soci > 0 or sMfocus[x] == 2 and phys > 0 or sMfocus[x] == 3:
-                    choicebutton('{size=[Siz]}[colorz] '+x+'{/size} ', 'studyA', x)
+                    choicebutton('{size=[Siz]}[colorz] '+x+'{/size} ', 'studyD', x)
             ui.close()
+
+            if timeMan == True:
+                ui.hbox(xalign=0.1, yalign =0.3)
+                ui.text("Forenoon        ")                
+                for x in studMeths:
+                    if sMfocus[x] == 0:
+                        colorz = "{color=#6699ff}█{/color}"
+                    elif sMfocus[x] == 1:
+                        colorz = "{color=#33cc33}█{/color}"
+                    elif sMfocus[x] == 2:
+                        colorz = "{color=#ff3300}█{/color}"
+                    else:
+                        colorz = "{color=#e6e6e6}█{/color}"
+                    if sMfocus[x] == 0 and ment > 0 or sMfocus[x] == 1 and soci > 0 or sMfocus[x] == 2 and phys > 0 or sMfocus[x] == 3:
+                        choicebutton('{size=[Siz]}[colorz] '+x+'{/size} ', 'studyA', x)
+                ui.close()
 
             ui.hbox(xalign=0.1, yalign=0.4)
             ui.text("Afternoon Class")
