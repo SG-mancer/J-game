@@ -12,7 +12,7 @@ label tutorial:
     return
 
 label FullTurorial:
-    x "this game..."
+    x "this game... doesn't have a full tutorial yet"
     return
 
 label tutorialTopics:

@@ -33,13 +33,13 @@ screen healthscreen():
         xmaximum 250
         vbox:
             text "Week [week_count]"
-            text u"{color=#6699ff}Fatigue: [ment]{/color}"
+            text u"{color=#6699ff}Fatigue: [fatig]{/color}"
             bar value AnimatedValue(value=fatig, range=max_stat, delay=2.0)
 
-            text u"{color=#33cc33}Motivation: [soci]{/color}"
+            text u"{color=#33cc33}Motivation: [motiv]{/color}"
             bar value AnimatedValue(value=motiv, range=max_stat, delay=2.0)
 
-            text u"{color=#ff3300}Confidence: [phys]{/color}"
+            text u"{color=#ff3300}Confidence: [confi]{/color}"
             bar value AnimatedValue(value=confi, range=max_stat, delay=2.0)
 
             text "Knoweldge:"
@@ -68,10 +68,12 @@ label start:
     ## Starting money (approx 20% deposit for a house $87,000AUD * 70yen/$ approx 6,000,000yen)
     $ yenYen = 6000000 # cash remaining
     $ spentY = 0 # cash spent
+    $ week_count = 0
 
     ## Tuition cost is 700,000yen
     ## living cost 200,000yen = 2,400,000 yen for year
     ## On application form need to say your goal ...
+
 
     $ study = ['0','0','0','0','0'] #choice of what to study for the week
     $ studyA = '0' #it was easier to just handle these strings for the time table options...
@@ -79,26 +81,14 @@ label start:
     $ studyC = '0'
     $ studyD = '0'
     $ studyE = '0'
-    
-    $ stat_bonus = 0 #number of weeks you started with max_stats in ment, soci and phys... reward_???
 
-    $ week_count = 0 #number of weeks played
-    $ burnCount = 0 #number of burnouts
-    $ burnoutWarn = 0 #number of burnout warnings
+    $ studMeths = ['jog','nap','rev_notes','browse_web','homework'] #The options available to player at start
 
-    
+    $ termNo = 1 #term number (it increases by incriments each time you finish a term and pass test)
     # flags for extra study times (effects layout of Timetable in weeklies.rpy/timetable)
     $ timeMan = False #gets extra study sessions (but beware of burnout)
     $ earlyBird = True
 
-    # flags for weekend events
-    $ burnout = False #burnout happens when you go into negative for ment. (you can not study too hard)
-    $ classHW = False #have you done homework this week
-    $ Marathon = False #enter Tokyo Marrathon
-    $ MarathonPrac = 0 #marathon practice
-
-
-    
 
     # # # # # # # # # # #
     # adventures in Japan
@@ -113,17 +103,7 @@ label start:
     while week_count < 101:
         
         call monday #handles flags, counts for week
-        #call ambient #background music for season
-        call story #story events...
-
-        if week_count in [5,13,14,20,26,27,38,39,50,51,52,57,64,65,71,77,78,89,90,102]:
-            # holidays has no timetable, class
-            call holidays
-            call weekend
-        else:
-            # classes
-            call timetable
-            call studyCal
-            call weekend
-
+        call timetable
+        call studyCal
+        
     return
