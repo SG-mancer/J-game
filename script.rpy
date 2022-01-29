@@ -1,11 +1,12 @@
 ﻿
 # declared characters:
-define z = Character("Jack") # The player character. 
-define o = Character("Oslo") # Jack's best friend, though he is 15 years older than him and they don't hang out.
+define z = Character("Dylan", color="#33ccff") ## The player character - Dylan A Thomas (DAT)
 define t = Character("Sensei Teacher")
 define x = Character("narrator")
 
+
 #background images
+image bg japanflight = "ausflight.png"
 image bg tokyonight = "ausflight.png"
 
 # MULTIPLE CHOICE Form - From: https://lemmasoft.renai.us/forums/viewtopic.php?t=2899 
@@ -32,30 +33,21 @@ screen healthscreen():
         xmaximum 250
         vbox:
             text "Week [week_count]"
-            text u"{color=#6699ff}Mental: [ment]{/color}"
-            bar value AnimatedValue(value=ment, range=max_stat, delay=2.0)
+            text u"{color=#6699ff}Fatigue: [ment]{/color}"
+            bar value AnimatedValue(value=fatig, range=max_stat, delay=2.0)
 
-            text u"{color=#33cc33}Social: [soci]{/color}"
-            bar value AnimatedValue(value=soci, range=max_stat, delay=2.0)
+            text u"{color=#33cc33}Motivation: [soci]{/color}"
+            bar value AnimatedValue(value=motiv, range=max_stat, delay=2.0)
 
-            text u"{color=#ff3300}Physical: [phys]{/color}"
-            bar value AnimatedValue(value=phys, range=max_stat, delay=2.0)
+            text u"{color=#ff3300}Confidence: [phys]{/color}"
+            bar value AnimatedValue(value=confi, range=max_stat, delay=2.0)
 
-            # Note: we only show totals for Talent, Skill and Knoweldge
-            if ((Talen[0]+Talen[1]+Talen[2]+Talen[3])/100 < 1) and ((Skill[0]+Skill[1]+Skill[2]+Skill[3])/100 < 1) and ((Knowl[0]+Knowl[1]+Knowl[2]+Knowl[3])/100 < 1):
-                text "Talent:"
-                bar value AnimatedValue(value=(Talen[0]+Talen[1]+Talen[2]+Talen[3]), range=100, delay=2.0)
-                text "Skill:"
-                bar value AnimatedValue(value=(Skill[0]+Skill[1]+Skill[2]+Skill[3]), range=100, delay=2.0)
-                text "Kowledge:"
-                bar value AnimatedValue(value=(Knowl[0]+Knowl[1]+Knowl[2]+Knowl[3]), range=100, delay=2.0)
-            else:
-                text "Talent:"
-                bar value AnimatedValue(value=(Talen[0]+Talen[1]+Talen[2]+Talen[3]), range=200, delay=2.0)
-                text "Skill:"
-                bar value AnimatedValue(value=(Skill[0]+Skill[1]+Skill[2]+Skill[3]), range=300, delay=2.0)
-                text "Kowledge:"
-                bar value AnimatedValue(value=(Knowl[0]+Knowl[1]+Knowl[2]+Knowl[3]), range=500, delay=2.0)                
+            text "Knoweldge:"
+            bar value AnimatedValue(value=(Ability[0]+Ability[1]), range=100, delay=2.0)
+            text "Receptive Skills:"
+            bar value AnimatedValue(value=(Ability[2]+Ability[3]), range=100, delay=2.0)
+            text "Productive Skills:"
+            bar value AnimatedValue(value=(Ability[4]+Ability[5]), range=100, delay=2.0)            
             text u"Cash:  \n¥[yenYen]"
             
 
@@ -66,23 +58,34 @@ label start:
     # # # # # # # # # # #
     # set up variables
     # # # # # # # # # # #
-    $ ment = 2 
-    $ soci = 2
-    $ phys = 2
+    ## Ability = Vocab, Grammar (Knoweldge); Reading, Listing (receptive/consuming); Writing, Speaking (protive/producing)
+    $ Ability = [0,0,0,0,0,0]
+    ## STATS = Fatigue, Motivation and Confidence
+    $ fatig = 2
+    $ motiv = 2
+    $ confi = 2
     $ max_stat = 5
-    $ Talen = [0,0,0,0] #Academics, Athletics, Art, Science
-    $ Skill = [0,0,0,0] #Reading, Listening, Pronounciation, Sport
-    $ Knowl = [0,0,0,0] #Vocab, Grammar, Kanji, General
-    $ yenYen = 3375000 #this is before redundancy 6672330 after? (random 70-85yen in the dollar?)
+    ## Starting money (approx 20% deposit for a house $87,000AUD * 70yen/$ approx 6,000,000yen)
+    $ yenYen = 6000000 # cash remaining
+    $ spentY = 0 # cash spent
+
+    ## Tuition cost is 700,000yen
+    ## living cost 200,000yen = 2,400,000 yen for year
+    ## On application form need to say your goal ...
+
+    $ study = ['0','0','0','0','0'] #choice of what to study for the week
+    $ studyA = '0' #it was easier to just handle these strings for the time table options...
+    $ studyB = '0'
+    $ studyC = '0'
+    $ studyD = '0'
+    $ studyE = '0'
     
     $ stat_bonus = 0 #number of weeks you started with max_stats in ment, soci and phys... reward_???
 
     $ week_count = 0 #number of weeks played
     $ burnCount = 0 #number of burnouts
     $ burnoutWarn = 0 #number of burnout warnings
-    $ school = 0 #the school selected
 
-    call init_study #initialises many study variables
     
     # flags for extra study times (effects layout of Timetable in weeklies.rpy/timetable)
     $ timeMan = False #gets extra study sessions (but beware of burnout)
@@ -93,15 +96,18 @@ label start:
     $ classHW = False #have you done homework this week
     $ Marathon = False #enter Tokyo Marrathon
     $ MarathonPrac = 0 #marathon practice
+
+
     
 
     # # # # # # # # # # #
     # adventures in Japan
     # # # # # # # # # # #
 
-    ## need to use jump less and more call (if no need to loop back)
+    ## need to use less call and more jump (if no need to loop back)
 
     call beginning #the story begins
+
     call tutorial #a tutorial for a new player
 
     while week_count < 101:

@@ -2,7 +2,8 @@
 
 ## Need to simplify this all...
 ## Pick starting studyMeths in beginning - 
-
+## !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+## TO DELETE - this needs to be rolled into start!!
 label init_study:
     $ study = ['0','0','0','0','0']
     $ studyA = '0' #it was easier to just handle these strings for the options...

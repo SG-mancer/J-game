@@ -13,8 +13,50 @@ label beginning:
     hide text
     with dissolve
 
-    ## You are at Cootamundra Airport waiting to change to a Dreamliner (Boeing 787) for your flight to Narita Airport.
-    ## Alone, you are now setting out to learn Japanese in a year...
+    scene bg tokyonight
+
+    # No one cares about what your paperwork is... or that you were FIFO for 4 or 5 years, working 9-on 5-off (work Monday, back home the following Wednesday, then off until Monday), or 12-on 9-off (leave Monday work until following Friday, then have a week off back to work on Monday) 
+    
+    # the hardest thing about FIFO - was that you didn't feel part of the community. You were away often, and when you were home everyone else was working.
+    # lonely you started learning French, travelled the France for a few weeks and didn't like it.
+    # then somehow you started learning Hirigana and Katanaa, got a textbook and started learning to talk some Japanese each night after your 12 hour shift.
+    # You also started snowboarding on your off week, and planned to visit Japan on your 4 weeks off in Feb/Mar
+
+    # Dating websites? How they didn't work, or maybe you wasted money on them...
+
+    # couch surfing? 
+
+    "You check over your paperwork. * Passport with Student Visa, * Residency Card (Zairyū Card) application, * Part time work application, * language school enrolement letter, * passport photo, * bank card..."
+    "and a * printed one way ticket to Tokyo (Narita)."
+    "Three years working FIFO, two weeks on one week off has swelled your bank account."
+
+    "Rather than buy a house, and"
+
+    "== Jikoshoukai ==" ## Part 1 - self introduction
+    "From the Airport Bar you watch as all your belongings in two bags are loaded into the cargo hold of the Boeing 787 Dreamliner."""
+
+
+    menu:
+        "Hajimemashite, Watashi wa _Dylan Thomas_ desu.\nHow do you do, My name is _Dylan Thomas_."
+        "I like snowboarding.":
+            ""
+        "I like watching anime.":
+            ""
+        "I like travelling.":
+            ""
+    
+    menu:
+        "For the past few months I've been studying Japanese by:"
+        "Reading a text book.":
+            ""
+        "Listening to podcasts.":
+            ""
+        "Reading blogs.":
+            ""
+        "Watching music videos online.":
+            ""
+
+    "8 and a half hour flight - Gold Coast to Tokyo (Narita)"
 
     # set your language learning style
     "Over the past few years, you have visited Japan 3 times."
@@ -56,16 +98,6 @@ label beginning:
         "So I can watch Anime without subtitles":
             "Hmm, so you will spend a year, just to watch tv?"
 
-    #
-    #
-    # https://www.eadeverell.com/language-learning-methods/
-    # https://www.fluentu.com/blog/how-to-study-a-language/
-    # https://www.usa.edu/blog/study-techniques/
-    # https://matadornetwork.com/bnt/7-tips-for-learning-a-foreign-language-on-the-road/
-    # https://matadornetwork.com/abroad/the-5-ways-we-learn-languages-and-which-style-is-right-for-you/
-    #
-    #
-
     # Choose your school
     menu:     
         "I haven't applied yet. But I think I will study this school in..."
@@ -76,7 +108,4 @@ label beginning:
         "{b}Osaki{/b}\nWith English speaking teachers, to help me understand the key points.":
             $ school = 2
 
-    o "Good luck in Japan. \n Bring back a good looking translator ;)"
-    z "I will miss Kanbogan."
-    o "Nah, the place will be finished with the plant closing."
     return
