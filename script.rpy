@@ -1,8 +1,10 @@
 ﻿
 # declared characters:
 define z = Character("Dylan", color="#33ccff") ## The player character - Dylan A Thomas (DAT)
+
 define t = Character("Sensei Teacher")
-define x = Character("narrator")
+
+define a = Character("Andrew", color="#ffcc33") ## friend of the player
 
 
 #background images
@@ -48,7 +50,7 @@ screen healthscreen():
             bar value AnimatedValue(value=(Ability[2]+Ability[3]), range=100, delay=2.0)
             text "Productive Skills:"
             bar value AnimatedValue(value=(Ability[4]+Ability[5]), range=100, delay=2.0)            
-            text u"Cash:  \n¥[yenYen]"
+            text u"Cash:  \n¥[yenYen], $[aus]"
             
 
         
@@ -66,7 +68,8 @@ label start:
     $ confi = 2
     $ max_stat = 5
     ## Starting money (approx 20% deposit for a house $87,000AUD * 70yen/$ approx 6,000,000yen)
-    $ yenYen = 6000000 # cash remaining
+    $ aus = 87000
+    $ yenYen = 0 # cash remaining
     $ spentY = 0 # cash spent
     $ week_count = 0
 

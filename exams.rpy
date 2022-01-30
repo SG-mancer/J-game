@@ -1,15 +1,17 @@
 # Test that the player has achieved the required skills to pass to next term (end of term Exams)
 # It also generates a report for the player, so they know how their skills are going
 label TermExam:
+
+    # termNo
     $ grade = Txams[school][termNo]
     $ failCount = 0 # counts units failed - if fail 2 you do not go to next level
-    $ Aca = ''
-    $ Rea = ''
-    $ Lis = ''
-    $ Prn = ''
-    $ Vcb = ''
-    $ Gmr = ''
-    $ Knj = ''
+    $ Aca = '' #academic
+    $ Rea = '' #reading
+    $ Lis = '' #listening
+    $ Prn = '' #pronounciation
+    $ Vcb = '' #vocab
+    $ Gmr = '' #grammar
+    $ Knj = '' #knoweldge
     
     # CHECK each of the Stats and assign S,A,B,C,D,E or F (and click up failCount)
     if Talen[0] > grade[0]:
