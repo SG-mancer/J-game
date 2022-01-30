@@ -13,38 +13,61 @@ label beginning:
     hide text
     with dissolve
 
-    # "You were becoming disheartened with work. The pay was good, but you always found the swing difficult to plan around. You were away pretty much three weeks every month, with a long holiday usually in February."
+    ## Your friend Andy has offered to drive you up to Sydney, rather than you catching the train.
+    # "After winding up work, you had spent the past few days back at your parents relaxing.\n Your Highschool friend Andrew offered to drive you up to Sydney, so he could see you off, and save you the 8 hour train ride."
 
-    
-    # No one cares about what your paperwork is... or that you were FIFO for 4 or 5 years, working 9-on 5-off (work Monday, back home the following Wednesday, then off until Monday), or 12-on 9-off (leave Monday work until following Friday, then have a week off back to work on Monday), or 19 on and 9 off (arrive home on Friday back to work in 2 Sunday's time for 2 and a bit weeks)
-    
-    # the hardest thing about FIFO - was that you didn't feel part of the community. You were away often, and when you were home everyone else was working.
-    # lonely you started learning French, travelled the France for a few weeks and didn't like it.
-    # then somehow you started learning Hirigana and Katanaa, got a textbook and started learning to talk some Japanese each night after your 12 hour shift.
-    # You also started snowboarding on your off week, and planned to visit Japan on your 4 weeks off in Feb/Mar
-
-    # Dating websites? How they didn't work, or maybe you wasted money on them...
-
-    # couch surfing?
-
-    # Your twenties were hard working. You dropped out of Uni, and worked a dead end job for a few years before finding a FIFO job. Then whilst earning the big money, you traveled overseas on your off-swings. Visiting South East Asia, Europe and Pacific islands.
-    # In 2012 at 29 you started snowboarding. Visiting Japan in 2013 for the powder. Then a second time in 2014 for a long rail holiday.
-
+    nvl clear
+    # Select the bonus item you take with you to Japan.
     menu:
-        "How have you been studying Japanese?"
+        a "Is that everything? You're moving to Japan and all you have is that?"
+        "1. Snowboard bag stuffed with gear. \n2. Duffle bag.":
+            z "My snowboarding gear."
+        "1. Lightweight hiking backpack.\n2. Duffle bag.":
+            z "my Hiking gear"
+        "1. Suit bag. \n2. Rugged roller luggage.":
+            z "figured I'ld pack a suit and cold weather jacket and some clothes. Rather than hang onto a snowboard for nine months until the season starts again, or "
+
+
+    a "How did you come to the decisions to enroll in a language school?"
+
+    # Select the first two study methods - note first one is solid, and second one is dubious (cost more fatigue, motivation or confidence)
+    z "It is hard to work in mining and studying at the same time. The swing made it difficult to sign up for classes, and I'm not the best at self studying from a textbook."
+    z "I also figured, I don't want to get get buy and house and get a mortgage. I would prefer having experiences."
+
+    nvl clear
+
+    a "Are you ready to start studying again?"
+    menu:
+        z "For past few months, I've been disciplined, each day spending an hour studying:"
         "Studying a textbook":
+            $ studMeths.append('text-book')
             z "I've been practicing dialogues, trying to build a flash card deck of vocab and phrases from a textbook.\nIt is difficult, I'm almost finished the first book of 12 lessons."
         "Listening to classes on CDs":
+            $ studMeths.append('cd')
             z "I've been following along with classes on CD.\n"
         "Reading blogs and listening to podcasts":
+            $ studMeths.append('browse-web')
+            ""
+
+    nvl clear
+
+    menu:
+        z "I also recently read about a group of people doing crazy things to learn Japanese."
+        "Studying Remember the Kanji to learn the 2,136 Kanji in a month (100 new Kanji a day).":
+            $ studMeths.append('Rem_Kanji')
+        "Using a spaced repition App on my phone, and drilling vocab.":
+            $ studMeths.append('Flash_Vocab')
+        "Studying a FAST course textbook, and drilling dialogues.":
             ""
     
-    z "Because I was working, I couldn't sit the JLPT last year."
     
-        
+    # The flight
+    nvl clear
+
     scene bg japanflight
     "30 March 2015 - Sydney Airport "
     
+    # one last check of your paperwork
 
 
     return
@@ -67,3 +90,5 @@ label kyuyakusho:
     "Get National Health Insurance"
     "Lodge taxes paperwork"
     "Try avoid the Pension stuff"
+
+    return

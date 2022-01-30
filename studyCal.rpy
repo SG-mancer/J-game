@@ -4,14 +4,26 @@ label studyCal:
     python:
         # sycle through our list
         for x in study:
-                
+              
             if x == 0: #used for unavailable study periods
-                continue
-
+                break
+            elif fatig < 1 or motiv < 1 or confi < 1:
+                "burn out"
+                yenYen -= 10000
             elif x == 'jog':
                 # jogging clears your head and improves your athletics. Jog enough and maybe even get to enter races
- 
-                continue
+                fatig -= 1
+                motiv += 1
+                confi += 1
+            elif x == 'Rem_Kanji':
+                fatig -= 1
+                confi -= 1
+                if (week_count % 3):
+                    Ability[2] -= 1
+                else:
+                    Ability[2] += 1
+                if (week_count % 2) == 0:
+                    Ability[4] += 1
 
 
     # Check Fatigue, Motivation or Confidence reserves are not above maximum
@@ -23,7 +35,6 @@ label studyCal:
         $ confi = max_stat
         
     # Check we haven't depleted (went to 0 or lower) Fatigue, Motivation or Confidence
-    if fatig < 1 or motiv < 1 or confi < 1:
-        "burn out"
+    
         
     return

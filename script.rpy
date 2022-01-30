@@ -1,10 +1,12 @@
 ﻿
 # declared characters:
-define z = Character("Dylan", color="#33ccff") ## The player character - Dylan A Thomas (DAT)
+define z = Character("Dylan", kind=nvl, color="#33ccff") ## The player character - Dylan A Thomas (DAT)
 
-define t = Character("Sensei Teacher")
+define t = Character("Sensei Teacher", kind=nvl)
 
-define a = Character("Andrew", color="#ffcc33") ## friend of the player
+define a = Character("Andy", kind=nvl, color="#ffcc33") ## friend of the player
+
+define narrator = nvl_narrator
 
 
 #background images
@@ -46,9 +48,9 @@ screen healthscreen():
 
             text "Knoweldge:"
             bar value AnimatedValue(value=(Ability[0]+Ability[1]), range=100, delay=2.0)
-            text "Receptive Skills:"
+            text "Receptive Skills: [Ability[2]]"
             bar value AnimatedValue(value=(Ability[2]+Ability[3]), range=100, delay=2.0)
-            text "Productive Skills:"
+            text "Productive Skills:[Ability[4]]"
             bar value AnimatedValue(value=(Ability[4]+Ability[5]), range=100, delay=2.0)            
             text u"Cash:  \n¥[yenYen], $[aus]"
             
@@ -85,12 +87,13 @@ label start:
     $ studyD = '0'
     $ studyE = '0'
 
-    $ studMeths = ['jog','nap','rev_notes','browse_web','homework'] #The options available to player at start
+    $ studMeths = ['jog','nap'] #The options available to player at start
 
     $ termNo = 1 #term number (it increases by incriments each time you finish a term and pass test)
     # flags for extra study times (effects layout of Timetable in weeklies.rpy/timetable)
     $ timeMan = False #gets extra study sessions (but beware of burnout)
     $ earlyBird = True
+
 
 
     # # # # # # # # # # #
