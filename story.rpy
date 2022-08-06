@@ -7,34 +7,47 @@ label story:
 # Oslo (o) and Jack (z)*the player chat about the plant shutting down...
 # > select school,
 label beginning:
-    show text "The incidents descibed in this game never took place.\nSo many people travel to and study in Japan it is likely\nthat some will find their names in the following text.\n\nNo reference is intended to anyone living or dead." at truecenter
+    show text "The incidents described in this game never took place.\nSo many people travel to and study in Japan it is likely\nthat some will find their names in the following text.\n\nNo reference is intended to anyone living or dead." at truecenter
     with dissolve
     pause 10
     hide text
     with dissolve
 
-    ## Your friend Andy has offered to drive you up to Sydney, rather than you catching the train.
-    # "After winding up work, you had spent the past few days back at your parents relaxing.\n Your Highschool friend Andrew offered to drive you up to Sydney, so he could see you off, and save you the 8 hour train ride."
-
     nvl clear
-    # Select the bonus item you take with you to Japan.
+    # Select the player character
     menu:
-        a "Is that everything? You're moving to Japan and all you have is that?"
-        "1. Snowboard bag stuffed with gear. \n2. Duffle bag.":
-            z "My snowboarding gear."
-        "1. Lightweight hiking backpack.\n2. Duffle bag.":
-            z "my Hiking gear"
-        "1. Suit bag. \n2. Rugged roller luggage.":
-            z "figured I'ld pack a suit and cold weather jacket and some clothes. Rather than hang onto a snowboard for nine months until the season starts again, or "
-
-
-    a "How did you come to the decisions to enroll in a language school?"
-
-    # Select the first two study methods - note first one is solid, and second one is dubious (cost more fatigue, motivation or confidence)
-    z "It is hard to work in mining and studying at the same time. The swing made it difficult to sign up for classes, and I'm not the best at self studying from a textbook."
-    z "I also figured, I don't want to get get buy and house and get a mortgage. I would prefer having experiences."
+        "Choose your character:"
+        "1. Dylan Barry - 31 year old":
+            # Born Showa 58
+            "Now seated on the flight, you are a little unsure. This feeling is not as great as the relief you felt when you sold your car. (That felt like letting go of the last item anchoring you to Australia)"
+            "You think about how all your belongings are on this plane. Overhead is a backpack, in the seat pocket and below you somewhere in the hold."
+            ""
+            "At 31 years old, all through your twenties you never had enough money to do this."
+            "You think about when you moved away to Uni with only a few hundred dollars, then dropped out because it became too difficult to cope. From that low, you were sucked into a dead end sales job. The past ten or so years have been a blur of working suburbs and rural towns, walking house to house canvasing and selling, lonely or drunk weekends and no way out."
+            ""
+            "A little under 2 years ago you travelled to Japan for the first time. After a three day conference in Niigata, you spent a long weekend exploring Tokyo enjoying roof top beer gardens, convenience stores, skytree and just wandering the suburbs in awe."
+            "You wanted to explore on your next trip to Japan. So you took a ten week evening class, learning some basic phrases, like how to ask directions, or introduce yourself. Sadly you couldn't convince anyone to visit with you, so you went alone 1 Feb 2014, visiting Niseko, then Nagano before racing around the islands with a 3 week JR Pass."
+            ""
+            "It was probably the traveling, in the warmth of a \"wan-man densha\" seeing the beautiful winter mountain and seaside views that made you fall in love with Japan."
+            ""
+            "You wished you could had stayed longer, and explored more, experience Sakura and Momiji... But being over 30 you couldn't get a working holiday visa, and not having a degree meant you couldn't join an English teaching program."
+            ""
+            "Then, a few months later - browsing the internet on a rainy weekend, you found a blog where a polyglot who explained how they learnt Japanese in 6 months and passed the JLPT N2. It made you determined to go to do something similar."
+            "The school and visa application wasn't too difficult. Just a few emailed forms, and two visits to drop off your passport and collect your visa. You were similarly surprised the fees were only about 300,000yen a semester (approx $3500 AUD - getting 80-90yen for $1 AUD). For the past 6 months, you saved every spare cent you could, paired down your belongings, had two garage sales and tried to sell off your shares at a good price."
+        "2. Bradly Ryan - 22 year old":
+            # Born Heisei 4
+            "b"
 
     nvl clear
+    "You open up your new planner on the tray table. "
+    call tutorial
+    
+    return
+
+
+
+
+
 
     a "Are you ready to start studying again?"
     menu:

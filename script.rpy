@@ -11,7 +11,8 @@ define narrator = nvl_narrator
 
 #background images
 image bg japanflight = "ausflight.png"
-image bg tokyonight = "ausflight.png"
+
+image bg planner = "planner.png"
 
 # MULTIPLE CHOICE Form - From: https://lemmasoft.renai.us/forums/viewtopic.php?t=2899 
 init python:
@@ -100,16 +101,30 @@ label start:
     # adventures in Japan
     # # # # # # # # # # #
 
-    ## need to use less call and more jump (if no need to loop back)
+    ## The time table is hard coded
 
-    call beginning #the story begins
-
-    call tutorial #a tutorial for a new player
-
-    while week_count < 101:
+    while week_count < 52:
         
         call monday #handles flags, counts for week
-        call timetable
-        call studyCal
+
+        if week_count == 1:
+            call beginning
+        elif week_count == 25:
+            "Half year ceremony"
+        elif week_count == 51:
+            "School Graduation ceremony"
+        elif week_count in [15,24,38,50]:
+            "School exam"
+        elif week_count in [5,6,13,26,27,39,40,52]:
+            call holidays
+        elif week_count in [14,36]:
+            "JLPT"
+        else:
+            #studying week
+            if week_count in [17,29,32,42,46]:
+                #flavour text for long weekened
+                "Long weekend"
+            call timetable
+            call studyCal
         
     return

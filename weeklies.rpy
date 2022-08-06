@@ -23,7 +23,7 @@ label monday:
 label timetable:
     # Shows choices for activities for the weekdays.
     window hide
-    scene bg tokyonight
+    scene bg planner
     show text "## Week [week_count] timetable ##" at top
     python:
         study = ['0','0','0','0','0'] # Zeros the choices, so they don't default to last weeks (what could get around O stat penalty)

@@ -232,3 +232,16 @@ label JLPTExam:
         $ JResu = ['C','C','C','Fail']
 
     return
+
+# THE ABOVE WILL BE DELETED
+# New exams will be:
+
+# School exams that happen in the last week of every term (weeks 12, 25, 39, 50)
+label schoExam:
+    "End of Term exams"
+    return
+
+# JLPT hapens twice (weeks 14, 36)
+label jlptExam:
+    "JLPT exam"
+    return
