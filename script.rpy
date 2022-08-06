@@ -1,18 +1,19 @@
 ﻿
 # declared characters:
-define z = Character("Dylan", kind=nvl, color="#33ccff") ## The player character - Dylan A Thomas (DAT)
+define barry = Character("Barry", kind=nvl, color="#33ccff") ## The player character that will be default - Dylan Barry
+define ryan = Character("Ryan", kind=nvl, color="#33ccff") ## Younger character Bradly Ryan
+define z = barry ## The player character
 
-define t = Character("Sensei Teacher", kind=nvl)
-
-define a = Character("Andy", kind=nvl, color="#ffcc33") ## friend of the player
 
 define narrator = nvl_narrator
 
 
 #background images
 image bg japanflight = "ausflight.png"
-
+image bg flightmap = "flightplan.png"
+image fltcon = "flight_icon.png" 
 image bg planner = "planner.png"
+
 
 # MULTIPLE CHOICE Form - From: https://lemmasoft.renai.us/forums/viewtopic.php?t=2899 
 init python:
@@ -95,13 +96,18 @@ label start:
     $ timeMan = False #gets extra study sessions (but beware of burnout)
     $ earlyBird = True
 
+    jump looper
+
+    return 
+
 
 
     # # # # # # # # # # #
     # adventures in Japan
     # # # # # # # # # # #
-
+label looper:
     ## The time table is hard coded
+    ## If events happen in a week, the week ends by jumping to looper
 
     while week_count < 52:
         
@@ -126,5 +132,7 @@ label start:
                 "Long weekend"
             call timetable
             call studyCal
-        
+    
+    # If there has been 52 weeks already, the game ends with you stuck in Japan?
+
     return

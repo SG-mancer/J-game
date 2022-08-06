@@ -178,7 +178,7 @@ label JLPTResult:
 
 # ---------------
 # The JLPT. When you conduct it, you will get a result determined. But only vaguely know if you passed... (results in 4 weeks)
-label JLPTExam:
+label JLPTExamZ:
     $ ExamReq = {'JLPT 5':[10,10,9,15,6,8],'JLPT 4':[15,40,9,20,9,25],'JLPT 3':[30,50,12,25,12,62],'JLPT 2':[60,90,21,40,27,100],'JLPT 1':[90,140,35,80,51]}
     $ Examinee = [Talen[0],Skill[0],Skill[1],Knowl[0],Knowl[1],Knowl[2]]
     $ JExam = ExamReq[Jlvl]

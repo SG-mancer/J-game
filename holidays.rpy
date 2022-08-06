@@ -6,5 +6,5 @@ label holidays:
     # Christmas - 39
     # New Years - 40
     # After graduation - 52
-    x "holiday"
+    "holiday"
     return
