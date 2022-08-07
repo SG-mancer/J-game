@@ -13,7 +13,7 @@ image bg japanflight = "ausflight.png"
 image bg flightmap = "flightplan.png"
 image fltcon = "flight_icon.png" 
 image bg planner = "planner.png"
-image nihonmap = "nihonmap_empty.png"
+image nihoznmap = "nihonmap_empty.png"
 
 
 # MULTIPLE CHOICE Form - From: https://lemmasoft.renai.us/forums/viewtopic.php?t=2899 

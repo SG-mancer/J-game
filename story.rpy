@@ -59,66 +59,101 @@ label beginning:
     "8:40am - After watching the safety demonstration, the Boeing 777 heads to the runway for immediate departure."
     "8:55am - The seatbelt sign turns off, and you open your bag and pull out your new organiser."
 
-    # TUTORIAL HERE
-
-    if z == ryan:
-        "hi Ryan [z]"
-    elif z == barry:
-        "hi barry"
-    
-    show nihonmap at right
-
-    "hmm"
-
-
-    scene planner
-    pause 5
-    "You open up your new planner on the tray table. "
-    call tutorial
-    
-    return
-
-
-
-
-
-
-    a "Are you ready to start studying again?"
+    # Introducting the Planner, offering a TUTORIAL
+    nvl clear
+    "Wanting to be as productive and focused as possible, you get out your study journal."
+    "It is a present to yourself to track your goals, study timetable and appointments."
     menu:
-        z "For past few months, I've been disciplined, each day spending an hour studying:"
-        "Studying a textbook":
+        "Do you want to learn how to use your organiser (how to play J-game)?"
+        "Yes, watch the tutorial.":
+            call tutorial
+        "No, I'll be fine with the organiser.":
+            # Flavour text depending on the character
+            if z == ryan:
+                "hi Ryan"
+            elif z == barry:
+                "hi Barry"
+    
+
+    # Choose starting study methods
+    nvl clear
+    "9:20am - You watch the flight tracker for a minute and notice the plane is still over NSW: 12,000m above sea level, doing 770km/hr."
+    "You think of how you have prefered studying Japanese so far."
+
+    nvl clear
+    menu:
+        "You think the best way to improve your listening-speaking skills is to:"
+        "- listen and follow along with an audio course.":
             $ studMeths.append('text-book')
-            z "I've been practicing dialogues, trying to build a flash card deck of vocab and phrases from a textbook.\nIt is difficult, I'm almost finished the first book of 12 lessons."
-        "Listening to classes on CDs":
-            $ studMeths.append('cd')
-            z "I've been following along with classes on CD.\n"
-        "Reading blogs and listening to podcasts":
-            $ studMeths.append('browse-web')
-            ""
+        "- focus on drilling phrases before a situation (i.e. practice asking for directions before going out).":
+            $ studMeths.append('text-book')
+        "- through listening and watching Japanese content, with a pocket book for writing new words and phrases you come across.":
+            $ studMeths.append('text-book')
+    
+    nvl clear
+    menu:
+        "To improve your reading-writing skills, you would recommend:"
+        "- Readings lots, with a dictionary close by.":
+            $ studMeths.append('text-book')
+        "- Reading graded books.":
+            $ studMeths.append('text-book')
+        "- Practicing constructing new sentences each each day.":
+            $ studMeths.append('text-book')
 
     nvl clear
+    "You also have recently started using a Flash card/Spaced Repetition App."
+    "At first it was to learn Kanji, but now you think..."
 
     menu:
-        z "I also recently read about a group of people doing crazy things to learn Japanese."
-        "Studying Remember the Kanji to learn the 2,136 Kanji in a month (100 new Kanji a day).":
-            $ studMeths.append('Rem_Kanji')
-        "Using a spaced repition App on my phone, and drilling vocab.":
-            $ studMeths.append('Flash_Vocab')
-        "Studying a FAST course textbook, and drilling dialogues.":
-            ""
-    
-    
-    # The flight
-    nvl clear
-
-    scene bg japanflight
-    "30 March 2015 - Sydney Airport "
-    
-    # one last check of your paperwork
+        "{b}Kanji scares you{/b}, so you use a book called Remembering The Kanji. It claims once you memorise all of them kanji it will make learning grammar etc. easier. Remembering the mnemonics in the book is hard and you already have maximum reviews required each day.":
+            $ studMeths.append('text-book')
+        "{b}Kanju worries you{/b}, a blogger recommended learning them in the order Japanese kids learn them at school. You downloaded and setup a public deck of cards. Each day you learn 10-20 new kanji with how they pronounced in a sentence or two.":
+            $ studMeths.append('text-book')
+        "{b}Kanji is a bridge you will get to{/b}. You have focused on mastering hiragana and katakana first, learning new vocabulary based on themes (some crazy like the names of Yamanote line stations, others useful like parts of the body), each list a new deck in your flash card application. That takes as long to make as it does to practice in a week.":
+            $ studMeths.append('text-book')
 
 
+    #
+    # The boredom of a flight - you will decide things to do during the flights remaining 8.5 hours.
+    # You will get interupted by drinks, meals, turbulance (maybe)...
+    #
+    define flt_count = 0
+    $ forgot_text = True
+    "9:30am - The plane is now over the NSW/QLD border, flying 775km/hr at 12,000m."
+
+    while flt_count < 10:
+        # Menu choosing what to do
+        # - - - -
+        nvl clear
+        menu:
+            "You contemplate what to do..."
+            "Study":
+                menu:
+                    "What do you want to study?"
+                    "Textbook" if forgot_text:
+                        $ forgot_text = False
+                        "As you reach into you bag for your textbook, you remember putting it down on the seat next to you in the Departure Lounge."
+                        "When you got up to talk on your phone you didn't pick it up, and then walked to the window before deciding to wander the lounge for a few minutes."
+                        "Your poor text book is now hundreds if not thousands of kilometers away..."
+                        pause 2
+                        "Maybe someone will find it, and be inspired to learn Japanese too."
+                    "The back of your eyelids":
+                        "You sleep"
+                        $ flt_count += 1
+            "Go to the toilet":
+                "You stand up, and push past your seat mate to join the line of the toilet."
+                $flt_count +=1
+    # Handling events (i.e. updating the flight map, informing you of crossing the equator etc. if you aren't watching a movie etc.)
+    # - - - -
+
+    "Hmm"
+            
     return
 
+
+
+
+# ARE THE BELOW EVEN USEFUL?
 # Getting a mobile phone
 label keitai:
     ""
