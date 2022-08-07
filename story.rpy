@@ -65,8 +65,10 @@ label beginning:
         "hi Ryan [z]"
     elif z == barry:
         "hi barry"
-    else:
-        "[z] what is up. [pc]"
+    
+    show nihonmap at right
+
+    "hmm"
 
 
     scene planner
