@@ -4,8 +4,6 @@ label story:
     t "story goes here"
     return
 
-# Oslo (o) and Jack (z)*the player chat about the plant shutting down...
-# > select school,
 label beginning:
     show text "The incidents described in this game never took place.\nSo many people travel to and study in Japan it is likely\nthat some will find their names in the following text.\n\nNo reference is intended to anyone living or dead." at truecenter
     with dissolve
@@ -15,7 +13,7 @@ label beginning:
 
     scene bg japanflight
     pause 5
-    "Sydney - 8:30am Saturday 28 March 2015"
+    "Sydney - 9:30am Saturday 28 March 2015"
     nvl clear
     # Select the player character
     menu:
@@ -56,8 +54,8 @@ label beginning:
 
     show fltcon at left
 
-    "8:40am - After watching the safety demonstration, the Boeing 777 heads to the runway for immediate departure."
-    "8:55am - The seatbelt sign turns off, and you open your bag and pull out your new organiser."
+    "9:40am - After watching the safety demonstration, the Boeing 777 heads to the runway for immediate departure."
+    "9:55am - The seatbelt sign turns off, and you open your bag and pull out your new organiser."
 
     # Introducting the Planner, offering a TUTORIAL
     nvl clear
@@ -77,7 +75,7 @@ label beginning:
 
     # Choose starting study methods
     nvl clear
-    "9:20am - You watch the flight tracker for a minute and notice the plane is still over NSW: 12,000m above sea level, doing 770km/hr."
+    "10:20am - You watch the flight tracker for a minute and notice the plane is still over NSW: 12,000m above sea level, doing 770km/hr."
     "You think of how you have prefered studying Japanese so far."
 
     nvl clear
@@ -119,36 +117,72 @@ label beginning:
     #
     define flt_count = 0
     $ forgot_text = True
-    "9:30am - The plane is now over the NSW/QLD border, flying 775km/hr at 12,000m."
+    $ flt_movie = False
+    
 
-    while flt_count < 10:
-        # Menu choosing what to do
-        # - - - -
+    while flt_count < 20:
         nvl clear
-        menu:
-            "You contemplate what to do..."
-            "Study":
+        # Handling events (i.e. informing you of crossing the equator etc.)
+        #
+        if flt_movie:
+            # If watching movie only a few events will be shown
+            if flt_count == 1:
+                "10:55am - The meal carts have been rolled out, and you will soon get a meal"
+                $ flt_count = 9
+            elif flt_count > 17:
+                "16:15 - the meal carts have been rolled out"
+                $ flt_count = 19
+            elif flt_count == 20:
+                "16:40 - the plane is now desending, and the meal is quickly cleared away."
+            "You continue to watch the movie"
+        else:            
+            if flt_count == 0:
+                "10:30am - The plane is now over the NSW/QLD border, flying 775km/hr at 12,000m."
+            elif flt_count == 1:
+                "10:55am - The meal carts have been rolled out, and you will soon get a meal"
+            elif flt_count == 3:
+                "11:45am - The meal is cleared away"
+            elif flt_count == 5:
+                "12:35am - now flying over PNG"
+            elif flt_count == 9:
+                "12:15 Tokyo Time - You have crossed the equator and wind your watch back an hour"
+            elif flt_count == 13:
+                "13:45 - you are now over Guam 910km/hr at 12,000m. The flight makes a small deviation."
+            elif flt_count == 17:
+                "15:25 - now flying over Tokyo Islands 915km/hr at 12,000m"
+            elif flt_count == 19:
+                "16:15 - the meal carts have been rolled out"
+            elif flt_count == 20:
+                "16:40 - the plane is now desending, and the meal is quickly cleared away."
+            else:
+                # Menu choosing what to do
+                # - - - -
                 menu:
-                    "What do you want to study?"
-                    "Textbook" if forgot_text:
-                        $ forgot_text = False
-                        "As you reach into you bag for your textbook, you remember putting it down on the seat next to you in the Departure Lounge."
-                        "When you got up to talk on your phone you didn't pick it up, and then walked to the window before deciding to wander the lounge for a few minutes."
-                        "Your poor text book is now hundreds if not thousands of kilometers away..."
-                        pause 2
-                        "Maybe someone will find it, and be inspired to learn Japanese too."
-                    "The back of your eyelids":
-                        "You sleep"
-                        $ flt_count += 1
-            "Go to the toilet":
-                "You stand up, and push past your seat mate to join the line of the toilet."
-                $flt_count +=1
-    # Handling events (i.e. updating the flight map, informing you of crossing the equator etc. if you aren't watching a movie etc.)
-    # - - - -
+                    "You contemplate what to do..."
+                    "Study":
+                        menu:
+                            "What do you want to study?"
+                            "Textbook" if forgot_text:
+                                $ forgot_text = False
+                                "As you reach into you bag for your textbook, you remember putting it down on the seat next to you in the Departure Lounge."
+                                "When you got up to talk on your phone you didn't pick it up, and then walked to the window before deciding to wander the lounge for a few minutes."
+                                "Your poor text book is now hundreds if not thousands of kilometers away..."
+                                pause 2
+                                "Maybe someone will find it, and be inspired to learn Japanese too."
+                            "The back of your eyelids":
+                                "You sleep"
+                                $ flt_count += 1
+                    "Go to the toilet":
+                        "You stand up, and push past your seat mate to join the line of the toilet."
+                        $ flt_count +=1
+                    "Watch movie":
+                        $ flt_movie = True
+        $ flt_count += 1
 
-    "Hmm"
+    # The aircraft lands, and you continue the adventure
+    "16:55 - The aircraft lands"
             
-    return
+    jump looper
 
 
 

@@ -115,7 +115,7 @@ label looper:
         call monday #handles flags, counts for week
 
         if week_count == 1:
-            call beginning
+            jump beginning
         elif week_count == 25:
             "Half year ceremony"
         elif week_count == 51:
