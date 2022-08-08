@@ -1,12 +1,20 @@
 ﻿
 # declared characters:
-define z = Character("Jack") # The player character. 
-define o = Character("Oslo") # Jack's best friend, though he is 15 years older than him and they don't hang out.
-define t = Character("Sensei Teacher")
-define x = Character("narrator")
+define barry = Character("Barry", kind=nvl, color="#33ccff") ## The player character that will be default - Dylan Barry
+define ryan = Character("Ryan", kind=nvl, color="#33ccff") ## Younger character Bradly Ryan
+define z = barry ## The player character
+
+
+define narrator = nvl_narrator
+
 
 #background images
-image bg tokyonight = "ausflight.png"
+image bg japanflight = "ausflight.png"
+image bg flightmap = "flightplan.png"
+image fltcon = "flight_icon.png" 
+image bg planner = "planner.png"
+image nihoznmap = "nihonmap_empty.png"
+
 
 # MULTIPLE CHOICE Form - From: https://lemmasoft.renai.us/forums/viewtopic.php?t=2899 
 init python:
@@ -32,31 +40,22 @@ screen healthscreen():
         xmaximum 250
         vbox:
             text "Week [week_count]"
-            text u"{color=#6699ff}Mental: [ment]{/color}"
-            bar value AnimatedValue(value=ment, range=max_stat, delay=2.0)
+            text u"{color=#6699ff}Fatigue: [fatig]{/color}"
+            bar value AnimatedValue(value=fatig, range=max_stat, delay=2.0)
 
-            text u"{color=#33cc33}Social: [soci]{/color}"
-            bar value AnimatedValue(value=soci, range=max_stat, delay=2.0)
+            text u"{color=#33cc33}Motivation: [motiv]{/color}"
+            bar value AnimatedValue(value=motiv, range=max_stat, delay=2.0)
 
-            text u"{color=#ff3300}Physical: [phys]{/color}"
-            bar value AnimatedValue(value=phys, range=max_stat, delay=2.0)
+            text u"{color=#ff3300}Confidence: [confi]{/color}"
+            bar value AnimatedValue(value=confi, range=max_stat, delay=2.0)
 
-            # Note: we only show totals for Talent, Skill and Knoweldge
-            if ((Talen[0]+Talen[1]+Talen[2]+Talen[3])/100 < 1) and ((Skill[0]+Skill[1]+Skill[2]+Skill[3])/100 < 1) and ((Knowl[0]+Knowl[1]+Knowl[2]+Knowl[3])/100 < 1):
-                text "Talent:"
-                bar value AnimatedValue(value=(Talen[0]+Talen[1]+Talen[2]+Talen[3]), range=100, delay=2.0)
-                text "Skill:"
-                bar value AnimatedValue(value=(Skill[0]+Skill[1]+Skill[2]+Skill[3]), range=100, delay=2.0)
-                text "Kowledge:"
-                bar value AnimatedValue(value=(Knowl[0]+Knowl[1]+Knowl[2]+Knowl[3]), range=100, delay=2.0)
-            else:
-                text "Talent:"
-                bar value AnimatedValue(value=(Talen[0]+Talen[1]+Talen[2]+Talen[3]), range=200, delay=2.0)
-                text "Skill:"
-                bar value AnimatedValue(value=(Skill[0]+Skill[1]+Skill[2]+Skill[3]), range=300, delay=2.0)
-                text "Kowledge:"
-                bar value AnimatedValue(value=(Knowl[0]+Knowl[1]+Knowl[2]+Knowl[3]), range=500, delay=2.0)                
-            text u"Cash:  \n¥[yenYen]"
+            text "Knoweldge:"
+            bar value AnimatedValue(value=(Ability[0]+Ability[1]), range=100, delay=2.0)
+            text "Receptive Skills: [Ability[2]]"
+            bar value AnimatedValue(value=(Ability[2]+Ability[3]), range=100, delay=2.0)
+            text "Productive Skills:[Ability[4]]"
+            bar value AnimatedValue(value=(Ability[4]+Ability[5]), range=100, delay=2.0)            
+            text u"Cash:  \n¥[yenYen], $[aus]"
             
 
         
@@ -66,62 +65,75 @@ label start:
     # # # # # # # # # # #
     # set up variables
     # # # # # # # # # # #
-    $ ment = 2 
-    $ soci = 2
-    $ phys = 2
+    ## Ability = Vocab, Grammar (Knoweldge); Reading, Listing (receptive/consuming); Writing, Speaking (protive/producing)
+    $ Ability = [0,0,0,0,0,0]
+    ## STATS = Fatigue, Motivation and Confidence
+    $ fatig = 2
+    $ motiv = 2
+    $ confi = 2
     $ max_stat = 5
-    $ Talen = [0,0,0,0] #Academics, Athletics, Art, Science
-    $ Skill = [0,0,0,0] #Reading, Listening, Pronounciation, Sport
-    $ Knowl = [0,0,0,0] #Vocab, Grammar, Kanji, General
-    $ yenYen = 3375000 #this is before redundancy 6672330 after?
-    
-    $ stat_bonus = 0 #number of weeks you started with max_stats in ment, soci and phys... reward_???
+    ## Starting money (approx 20% deposit for a house $87,000AUD * 70yen/$ approx 6,000,000yen)
+    $ aus = 87000
+    $ yenYen = 0 # cash remaining
+    $ spentY = 0 # cash spent
+    $ week_count = 0
 
-    $ week_count = 0 #number of weeks played
-    $ burnCount = 0 #number of burnouts
-    $ burnoutWarn = 0 #number of burnout warnings
-    $ school = 0 #the school selected
+    ## Tuition cost is 700,000yen
+    ## living cost 200,000yen = 2,400,000 yen for year
+    ## On application form need to say your goal ...
 
-    call init_study #initialises many study variables
-    
-    # flags for extra study times
+
+    $ study = ['0','0','0','0','0'] #choice of what to study for the week
+    $ studyA = '0' #it was easier to just handle these strings for the time table options...
+    $ studyB = '0'
+    $ studyC = '0'
+    $ studyD = '0'
+    $ studyE = '0'
+
+    $ studMeths = ['jog','nap'] #The options available to player at start
+
+    $ termNo = 1 #term number (it increases by incriments each time you finish a term and pass test)
+    # flags for extra study times (effects layout of Timetable in weeklies.rpy/timetable)
     $ timeMan = False #gets extra study sessions (but beware of burnout)
     $ earlyBird = True
 
-    # flags for weekend events
-    $ burnout = False #burnout happens when you go into negative for ment. (you can not study too hard)
-    $ classHW = False #have you done homework this week
-    $ Marathon = False #enter Tokyo Marrathon
-    $ MarathonPrac = 0 #marathon practice
-    
+    jump looper
+
+    return 
+
+
 
     # # # # # # # # # # #
     # adventures in Japan
     # # # # # # # # # # #
+label looper:
+    ## The time table is hard coded
+    ## If events happen in a week, the week ends by jumping to looper
 
-    call beginning #the story begins
-    call tutorial #a tutorial for a new player
-
-    while week_count < 101:
+    while week_count < 52:
         
         call monday #handles flags, counts for week
-        #call ambient #background music for season
-        call story #story events...
 
-        if week_count in [5,13,14,20,26,27,38,39,50,51,52,57,64,65,71,77,78,89,90,102]:
-            # holidays has no timetable, class
+        if week_count == 1:
+            jump beginning
+        elif week_count == 25:
+            "Half year ceremony"
+        elif week_count == 51:
+            "School Graduation ceremony"
+        elif week_count in [15,24,38,50]:
+            "School exam"
+        elif week_count in [5,6,13,26,27,39,40,52]:
             call holidays
-            call weekend
+        elif week_count in [14,36]:
+            "JLPT"
         else:
-            # classes
+            #studying week
+            if week_count in [17,29,32,42,46]:
+                #flavour text for long weekened
+                "Long weekend"
             call timetable
             call studyCal
-            call weekend
+    
+    # If there has been 52 weeks already, the game ends with you stuck in Japan?
 
     return
-
-
-
-
-            
-

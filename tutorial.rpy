@@ -1,18 +1,14 @@
 # A tutorial for the player. So they understand what is going on
 label tutorial:
-    menu:
-        "Do you want me to explain how to play"
-        "Yes":
-            call FullTutorial
-        "I have a specific question":
-            call tutorialTopics
-        "No":
-            return
-        
+
+    "Show pictures to demonstrate making choices on the planner page"
+    "The effect"
+    "And how to open the stats view"
+
     return
 
 label FullTurorial:
-    x "this game..."
+    x "this game... doesn't have a full tutorial yet"
     return
 
 label tutorialTopics:

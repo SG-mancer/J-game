@@ -1,15 +1,17 @@
 # Test that the player has achieved the required skills to pass to next term (end of term Exams)
 # It also generates a report for the player, so they know how their skills are going
 label TermExam:
+
+    # termNo
     $ grade = Txams[school][termNo]
     $ failCount = 0 # counts units failed - if fail 2 you do not go to next level
-    $ Aca = ''
-    $ Rea = ''
-    $ Lis = ''
-    $ Prn = ''
-    $ Vcb = ''
-    $ Gmr = ''
-    $ Knj = ''
+    $ Aca = '' #academic
+    $ Rea = '' #reading
+    $ Lis = '' #listening
+    $ Prn = '' #pronounciation
+    $ Vcb = '' #vocab
+    $ Gmr = '' #grammar
+    $ Knj = '' #knoweldge
     
     # CHECK each of the Stats and assign S,A,B,C,D,E or F (and click up failCount)
     if Talen[0] > grade[0]:
@@ -176,7 +178,7 @@ label JLPTResult:
 
 # ---------------
 # The JLPT. When you conduct it, you will get a result determined. But only vaguely know if you passed... (results in 4 weeks)
-label JLPTExam:
+label JLPTExamZ:
     $ ExamReq = {'JLPT 5':[10,10,9,15,6,8],'JLPT 4':[15,40,9,20,9,25],'JLPT 3':[30,50,12,25,12,62],'JLPT 2':[60,90,21,40,27,100],'JLPT 1':[90,140,35,80,51]}
     $ Examinee = [Talen[0],Skill[0],Skill[1],Knowl[0],Knowl[1],Knowl[2]]
     $ JExam = ExamReq[Jlvl]
@@ -229,4 +231,17 @@ label JLPTExam:
     else:
         $ JResu = ['C','C','C','Fail']
 
+    return
+
+# THE ABOVE WILL BE DELETED
+# New exams will be:
+
+# School exams that happen in the last week of every term (weeks 12, 25, 39, 50)
+label schoExam:
+    "End of Term exams"
+    return
+
+# JLPT hapens twice (weeks 14, 36)
+label jlptExam:
+    "JLPT exam"
     return
