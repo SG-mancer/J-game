@@ -53,14 +53,14 @@ screen healthscreen():
 
             text u""
 
-            text "Knoweldge:"
-            bar value AnimatedValue(value=(Ability[0]+Ability[1]), range=100, delay=2.0)
-            text "Receptive Skills: [Ability[2]]"
-            bar value AnimatedValue(value=(Ability[2]+Ability[3]), range=100, delay=2.0)
+            text "Knoweldge: [Ability[0]]"
+            bar value AnimatedValue(value=(Ability[0]), range=100, delay=2.0)
+            text "Receptive Skills: [Ability[3]]"
+            bar value AnimatedValue(value=(Ability[3]), range=100, delay=2.0)
             text "Productive Skills:[Ability[4]]"
-            bar value AnimatedValue(value=(Ability[4]+Ability[5]), range=100, delay=2.0)
+            bar value AnimatedValue(value=(Ability[4]), range=100, delay=2.0)
             text u""            
-            text u"Cash:  \n¥[yenYen], $[aus]"
+            text u"Cash:  \n¥[yenYen]"
             
 
         
@@ -70,39 +70,42 @@ label start:
     # # # # # # # # # # #
     # set up variables
     # # # # # # # # # # #
-    ## Ability = Vocab, Grammar (Knoweldge); Reading, Listing (receptive/consuming); Writing, Speaking (protive/producing)
-    $ Ability = [0,0,0,0,0,0]
 
-    ## STATS = Fatigue - Social, Physical, Mental
+    ## Language Ability = 0_Vocab, 1_Grammar, 2_Reading, 3_Listing, 4_Writing/Speaking
+    $ Ability = [0,0,0,0,0]
+
+    ## Fatigue STATS - Social, Physical, Mental
     $ soci = 2
     $ phys = 2
     $ ment = 2
     $ max_stat = 5
 
     ## Starting money (approx 20% deposit for a house $87,000AUD * 70yen/$ approx 6,000,000yen)
-    $ aus = 87000
     $ yenYen = 0 # cash remaining
     $ spentY = 0 # cash spent
     $ week_count = 0
 
-    ## Tuition cost is 700,000yen
-    ## living cost 200,000yen = 2,400,000 yen for year
-    ## On application form need to say your goal ...
 
-
+    # variables for tracking choices made using weekly study planner
     $ study = ['0','0','0','0','0'] #choice of what to study for the week
-    $ studyA = '0' #it was easier to just handle these strings for the time table options...
-    $ studyB = '0'
-    $ studyC = '0'
-    $ studyD = '0'
-    $ studyE = '0'
+    $ studyA = '0' #it was easier to just handle these strings for the time table options... Early morning
+    $ studyB = '0' #Morning
+    $ studyC = '0' #Evening
+    $ studyD = '0' #Night
+    $ studyE = '0' #is actually the weekend option
 
-    $ studMeths = ['jog','nap'] #The options available to player at start
+    $ timeMan = False #gets extra study session studyD
+    $ earlyBird = True #allows studyA
 
-    $ termNo = 1 #term number (it increases by incriments each time you finish a term and pass test)
-    # flags for extra study times (effects layout of Timetable in weeklies.rpy/timetable)
-    $ timeMan = False #gets extra study sessions (but beware of burnout)
-    $ earlyBird = True
+    # Options for the weekly study planner
+    $ studMeths = ['jog','nap'] #starting options for studying before/after class
+    $ wkendMeths = ['shopping','museum','walking','computer games'] #The options available to player at the weekend starting
+
+    # Tracking bonuses for the week (and past two weeks - for bonuses)
+    $ konshuAbil = [1,2,3,4,5]
+    $ senshuAbil = konshuAbil # last weeks Ability modifier
+    $ sensenAbil = senshuAbil # week before lasts Ability modifier
+    $ senshuStudy = study
 
     jump looper
 
@@ -119,7 +122,11 @@ label looper:
 
     while week_count < 52:
         
-        call monday #handles flags, counts for week
+        $ week_count += 1
+        $ sensenAbil = senshuAbil # week before lasts Ability modifier
+        $ senshuAbil = konshuAbil # last weeks Ability modifier
+
+        "[Ability]"
 
         if week_count == 1:
             jump beginning
@@ -138,8 +145,7 @@ label looper:
             if week_count in [17,29,32,42,46]:
                 #flavour text for long weekened
                 "Long weekend"
-            call timetable
-            call studyCal
+            jump timetable #Then it jumps to studyCal before jumping back to looper here
     
     # If there has been 52 weeks already, the game ends with you stuck in Japan?
 

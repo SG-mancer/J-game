@@ -19,4 +19,8 @@ label tutorialTopics:
             x "I don't know"
     return
     
-    
+# ---------------
+# This is how we can see what each study method does, and change new ones to our selection
+label pickMethods:
+    "Study Methods" 
+    jump timetable
