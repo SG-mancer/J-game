@@ -7,17 +7,17 @@ label studyCal:
               
             if x == 0: #used for unavailable study periods
                 break
-            elif fatig < 1 or motiv < 1 or confi < 1:
+            elif soci < 1 or phys < 1 or ment < 1:
                 "burn out"
                 yenYen -= 10000
             elif x == 'jog':
                 # jogging clears your head and improves your athletics. Jog enough and maybe even get to enter races
-                fatig -= 1
-                motiv += 1
-                confi += 1
+                soci -= 1
+                phys += 1
+                ment += 1
             elif x == 'Rem_Kanji':
-                fatig -= 1
-                confi -= 1
+                soci -= 1
+                ment -= 1
                 if (week_count % 3):
                     Ability[2] -= 1
                 else:
@@ -27,12 +27,12 @@ label studyCal:
 
 
     # Check Fatigue, Motivation or Confidence reserves are not above maximum
-    if fatig > max_stat:
-        $ fatig = max_stat
-    if motiv > max_stat:
-        $ motiv = max_stat
-    if confi > max_stat:
-        $ confi = max_stat
+    if soci > max_stat:
+        $ soci = max_stat
+    if phys > max_stat:
+        $ phys = max_stat
+    if ment > max_stat:
+        $ ment = max_stat
         
     # Check we haven't depleted (went to 0 or lower) Fatigue, Motivation or Confidence
     

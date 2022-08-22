@@ -4,18 +4,18 @@ label monday:
     $ week_count += 1
     $ classHW = False #set done homework to false 
     # check if bonus should be awarded
-    if fatig == motiv == confi == max_stat:
+    if soci == phys == ment == max_stat:
         # give a stat bonus
         # $ stat_bonus += 1
         "bonus for max stats"
 
     # give an extra point in each stat (if not already max_stat)
-    if fatig < max_stat:
-        $ fatig += 1
-    if motiv < max_stat:
-        $ motiv += 1
-    if confi < max_stat:
-        $ confi += 1
+    if soci < max_stat:
+        $ soci += 1
+    if phys < max_stat:
+        $ phys += 1
+    if ment < max_stat:
+        $ ment += 1
     return
 
 # ---------------

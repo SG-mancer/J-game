@@ -40,21 +40,26 @@ screen healthscreen():
         xmaximum 250
         vbox:
             text "Week [week_count]"
-            text u"{color=#6699ff}Fatigue: [fatig]{/color}"
-            bar value AnimatedValue(value=fatig, range=max_stat, delay=2.0)
+            text u""
+            text u"fatigue levels:"
+            text u"{color=#6699ff}Social: [soci]{/color}"
+            bar value AnimatedValue(value=soci, range=max_stat, delay=2.0)
 
-            text u"{color=#33cc33}Motivation: [motiv]{/color}"
-            bar value AnimatedValue(value=motiv, range=max_stat, delay=2.0)
+            text u"{color=#33cc33}Physical: [phys]{/color}"
+            bar value AnimatedValue(value=phys, range=max_stat, delay=2.0)
 
-            text u"{color=#ff3300}Confidence: [confi]{/color}"
-            bar value AnimatedValue(value=confi, range=max_stat, delay=2.0)
+            text u"{color=#ff3300}Mental: [ment]{/color}"
+            bar value AnimatedValue(value=ment, range=max_stat, delay=2.0)
+
+            text u""
 
             text "Knoweldge:"
             bar value AnimatedValue(value=(Ability[0]+Ability[1]), range=100, delay=2.0)
             text "Receptive Skills: [Ability[2]]"
             bar value AnimatedValue(value=(Ability[2]+Ability[3]), range=100, delay=2.0)
             text "Productive Skills:[Ability[4]]"
-            bar value AnimatedValue(value=(Ability[4]+Ability[5]), range=100, delay=2.0)            
+            bar value AnimatedValue(value=(Ability[4]+Ability[5]), range=100, delay=2.0)
+            text u""            
             text u"Cash:  \n¥[yenYen], $[aus]"
             
 
@@ -67,11 +72,13 @@ label start:
     # # # # # # # # # # #
     ## Ability = Vocab, Grammar (Knoweldge); Reading, Listing (receptive/consuming); Writing, Speaking (protive/producing)
     $ Ability = [0,0,0,0,0,0]
-    ## STATS = Fatigue, Motivation and Confidence
-    $ fatig = 2
-    $ motiv = 2
-    $ confi = 2
+
+    ## STATS = Fatigue - Social, Physical, Mental
+    $ soci = 2
+    $ phys = 2
+    $ ment = 2
     $ max_stat = 5
+
     ## Starting money (approx 20% deposit for a house $87,000AUD * 70yen/$ approx 6,000,000yen)
     $ aus = 87000
     $ yenYen = 0 # cash remaining
