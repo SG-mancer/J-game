@@ -99,7 +99,13 @@ label start:
 
     # Options for the weekly study planner
     $ studMeths = ['jog','nap'] #starting options for studying before/after class
-    $ wkendMeths = ['shopping','museum','walking','computer games'] #The options available to player at the weekend starting
+    $ wkendMeths = ['shopping','computerGames'] #The options available to player at the weekend starting
+
+    # Count how often each choice is made
+    $ sMCounts = {'nap':0, 'clubbing':0, 'jog':0, 'computerGames':0, 'datingApp':0, 'shopping':0, 'SRS_convo':0, 'SRS_kanji':0, 'SRS_vocab':0, 'workbook':0, 'JLPT_drill':0, 'text-book':0, '0':0}
+    # focus colour for each choice 0- none/black, 1- soci/blue, 2- phys/green, 3- ment/red, 4- soci+phys/cyan, 5- phys+ment/yellow, 6- soci+ment/magenta, 7- soci+phys+ment/white
+    $ sMfocus = {'nap':0, 'clubbing':4, 'jog':2, 'computerGames':0, 'datingApp':1, 'shopping':4, 'SRS_convo':3, 'SRS_kanji':3, 'SRS_vocab':3, 'workbook':3, 'JLPT_drill':3, 'text-book':3, '0':0}
+    $ statOP = 1 # count of how many times a stat is greater than the maximum (i.e. already max Ment but nap)
 
     # Tracking bonuses for the week (and past two weeks - for bonuses)
     $ konshuAbil = [1,2,3,4,5]

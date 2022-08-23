@@ -29,22 +29,70 @@ label timetable:
                 ui.hbox(xalign=0.1, yalign=0.1)
                 ui.text("Early Morning    ")
                 for x in studMeths:
+                    if sMfocus[x] == 0:
+                        colorz = "{color=#000000}█{/color}"
+                    elif sMfocus[x] == 1:
+                        colorz = "{color=#0000ff}█{/color}"
+                    elif sMfocus[x] == 2:
+                        colorz = "{color=#00ff00}█{/color}"
+                    elif sMfocus[x] == 3:
+                        colorz = "{color=#ff0000}█{/color}"
+                    elif sMfocus[x] == 4:
+                        colorz = "{color=#00ffff}█{/color}"
+                    elif sMfocus[x] == 5:
+                        colorz = "{color=#ffff00}█{/color}"
+                    elif sMfocus[x] == 6:
+                        colorz = "{color=#ff00ff}█{/color}"
+                    else:
+                        colorz = "{color=#ffffff}█{/color}"
                     choicebutton('{size=[Siz]}[colorz] '+x+'{/size} ', 'studyA', x)
                 ui.close()
 
             ui.hbox(xalign=0.1, yalign=0.2)
             ui.text("Morning          ")
             for x in studMeths:
+                if sMfocus[x] == 0:
+                    colorz = "{color=#000000}█{/color}"
+                elif sMfocus[x] == 1:
+                    colorz = "{color=#0000ff}█{/color}"
+                elif sMfocus[x] == 2:
+                    colorz = "{color=#00ff00}█{/color}"
+                elif sMfocus[x] == 3:
+                    colorz = "{color=#ff0000}█{/color}"
+                elif sMfocus[x] == 4:
+                    colorz = "{color=#00ffff}█{/color}"
+                elif sMfocus[x] == 5:
+                    colorz = "{color=#ffff00}█{/color}"
+                elif sMfocus[x] == 6:                        
+                    colorz = "{color=#ff00ff}█{/color}"
+                else:
+                    colorz = "{color=#ffffff}█{/color}"
                 choicebutton('{size=[Siz]}[colorz] '+x+'{/size} ', 'studyB', x)
             ui.close()
 
             ui.hbox(xalign=0.1, yalign=0.3)
-            ui.text("Afternoon Class")
+            ui.text("{b}{color=#ffa500}Afternoon Class{/color}{/b}")
             ui.close()
 
             ui.hbox(xalign=0.1, yalign=0.4)
             ui.text("Evening          ")
             for x in studMeths:
+                if sMfocus[x] == 0:
+                    colorz = "{color=#000000}█{/color}"
+                elif sMfocus[x] == 1:
+                    colorz = "{color=#0000ff}█{/color}"
+                elif sMfocus[x] == 2:
+                    colorz = "{color=#00ff00}█{/color}"
+                elif sMfocus[x] == 3:                        
+                    colorz = "{color=#ff0000}█{/color}"
+                elif sMfocus[x] == 4:
+                    colorz = "{color=#00ffff}█{/color}"
+                elif sMfocus[x] == 5:
+                    colorz = "{color=#ffff00}█{/color}"
+                elif sMfocus[x] == 6:
+                    colorz = "{color=#ff00ff}█{/color}"
+                else:
+                    colorz = "{color=#ffffff}█{/color}"
                 choicebutton('{size=[Siz]}[colorz] '+x+'{/size} ', 'studyC', x)
             ui.close()
   
@@ -52,12 +100,44 @@ label timetable:
                 ui.hbox(xalign=0.1, yalign=0.5)
                 ui.text("Night            ")
                 for x in studMeths:
+                    if sMfocus[x] == 0:
+                        colorz = "{color=#000000}█{/color}"
+                    elif sMfocus[x] == 1:
+                        colorz = "{color=#0000ff}█{/color}"
+                    elif sMfocus[x] == 2:
+                        colorz = "{color=#00ff00}█{/color}"
+                    elif sMfocus[x] == 3:
+                        colorz = "{color=#ff0000}█{/color}"
+                    elif sMfocus[x] == 4:
+                        colorz = "{color=#00ffff}█{/color}"
+                    elif sMfocus[x] == 5:
+                        colorz = "{color=#ffff00}█{/color}"
+                    elif sMfocus[x] == 6:
+                        colorz = "{color=#ff00ff}█{/color}"
+                    else:
+                        colorz = "{color=#ffffff}█{/color}"
                     choicebutton('{size=[Siz]}[colorz] '+x+'{/size} ', 'studyD', x)
                 ui.close()
 
             ui.hbox(xalign=0.1, yalign=0.7)
-            ui.text("{b}{color=#ff3300}WEEKEND          {/b}{/color}")
+            ui.text("{b}{color=#ff3300}WEEKEND          {/color}{/b}")
             for x in wkendMeths:
+                if sMfocus[x] == 0:
+                    colorz = "{color=#000000}█{/color}"
+                elif sMfocus[x] == 1:
+                    colorz = "{color=#0000ff}█{/color}"
+                elif sMfocus[x] == 2:
+                    colorz = "{color=#00ff00}█{/color}"
+                elif sMfocus[x] == 3:
+                    colorz = "{color=#ff0000}█{/color}"
+                elif sMfocus[x] == 4:
+                    colorz = "{color=#00ffff}█{/color}"
+                elif sMfocus[x] == 5:
+                    colorz = "{color=#ffff00}█{/color}"
+                elif sMfocus[x] == 6:
+                    colorz = "{color=#ff00ff}█{/color}"
+                else:
+                    colorz = "{color=#ffffff}█{/color}"
                 choicebutton('{size=[Siz]}[colorz] '+x+'{/size} ', 'studyE', x)
             ui.close()
 
