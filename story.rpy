@@ -208,3 +208,22 @@ label kyuyakusho:
     "Try avoid the Pension stuff"
 
     return
+
+# Buying a Teikiken - rail communter pass
+label getTeikiken:
+    # Buy a 6 month train ticket called a "Teikiken"
+    # This should be called during weeks 1 (during the begining) and 25
+    $ costX = teiTcst[homeStn]
+    $ costY = stnTcst[homeStn]
+    $costS = (250*costY) - costX
+    
+    menu:
+        "Do you want to buy a Teikiken?\nA trip from home to school costs ¥[costY], what equals about ¥[costY]0 a week. You could instead pay ¥[costX] for a six month {b}Teikiken{/b}ticket.\nSaving you ¥[costS]"
+        "yes, buy Teikiken":
+            $ teikiken = True
+            $ yenYen -= costX
+            $ spentY += costX
+        "no, I'm good.":
+            $ teikiken = False
+    
+    return

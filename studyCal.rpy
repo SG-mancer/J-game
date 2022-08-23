@@ -22,10 +22,12 @@ label studyCal:
                 #
                 soci -= 1
                 phys -= 1
+                week_costs += renpy.random.choice([7000,6700,9600])
 
             elif x == 'freeBoard':
                 #
                 soci -= 1
+                week_costs += 2500
 
             elif x == 'jog':
                 # jogging clears your head
@@ -40,7 +42,7 @@ label studyCal:
             elif x == 'library':
                 #6,
                 soci -= 1
-                ment -= 1 
+                ment -= 1
             
             elif x == 'gradedReader':
                 #3,
@@ -62,6 +64,7 @@ label studyCal:
                 # Go shopping on the weekends
                 phys -= 1
                 soci -= 1
+                week_costs += renpy.random.choice([1100,3100,6100]) #depending on the meal etc. before/after
 
             elif x == 'SRS_convo':
                 # Spaced Repetition Conversation - improves Writing/Speaking, Vocab (and Grammar if done 2 weeks in a row)
@@ -127,20 +130,24 @@ label studyCal:
                 
             elif x == 'langCircle':
                 #1,
-                soci -= 1 
+                soci -= 1
+                week_costs += renpy.random.choice([670,1400]) #for a meal afterwards/before
                 
             elif x == 'manga':
                 #3,
                 ment -= 1
+                week_costs += renpy.random.choice([300,5000,2100])
             
             elif x == 'bikeTouring':
                 #4,
                 soci -= 1
                 phys -= 1
+                week_costs += renpy.random.choice([1200,2200,2900]) # The feed etc.
                 
             elif x == 'tutor':
                 #1
                 soci -= 1
+                week_costs += renpy.random.choice([10000,9000,8000,7000])
             
             # Each turn check Fatigue Stats are not above maximum
             if soci > max_stat:
@@ -195,7 +202,7 @@ label studyCal:
         "Mental burn out"
         $ ment = 0
 
-    # Go to next week
-    jump looper
+    # Go to costs
+    jump costings
 
     return

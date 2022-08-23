@@ -37,7 +37,7 @@ init python:
 screen healthscreen():
     frame:
         align (0.95, 0.05)
-        xmaximum 250
+        xmaximum 350
         vbox:
             text "Week [week_count]"
             text u""
@@ -81,7 +81,7 @@ label start:
     $ max_stat = 5
 
     ## Starting money (approx 20% deposit for a house $87,000AUD * 70yen/$ approx 6,000,000yen)
-    $ yenYen = 0 # cash remaining
+    $ yenYen = 1000000 # cash remaining
     $ spentY = 0 # cash spent
     $ week_count = 0
 
@@ -96,6 +96,11 @@ label start:
 
     $ timeMan = False #gets extra study session studyD
     $ earlyBird = True #allows studyA
+    $ teikiken = False #A rail pass for getting to and from school
+    $ homeStn = 1 # Home station (0 = Shiomi, 1 = Hamacho, 2 = Chofu, 3 = Takadanobaba)
+    $ stnTcst = [310, 220, 250, 140] # cost of ticket
+    $ teiTcst = [44260, 50440, 48550, 18980] # cost of 6 month teikiken
+    $ daysClass = 5
 
     # Options for the weekly study planner
     $ studMeths = ['jog','nap'] #starting options for studying before/after class
@@ -122,7 +127,7 @@ label start:
     'workbook':'Do more exercises from this extra workbook.', 
     'JLPT_drill':'Practice JLPT questions with a drill book.',
     'text-book':'Read the next chapter or two and do exercises from your textbook.',
-    'shadowing':'Like Karaoke but for books. Read along with audio to improve your reading, listening and speaking skills.'
+    'shadowing':'Like Karaoke but for books. Read along with audio to improve your reading, listening and speaking skills.',
     'langCircle':'A weekend class arranged by the Language Teaching department of Waseda.',
     'manga':'Read manga to try improve your vocab and language skills.',
     'bikeTouring':'Ride around Tokyo and out of town to visit new places and meet people.',
@@ -152,15 +157,18 @@ label looper:
     while week_count < 52:
         
         $ week_count += 1
+        $ week_costs = renpy.random.choice([5000, 10000, 2000]) # random cost for sundries during the week
         $ sensenAbil = senshuAbil # week before lasts Ability modifier
         $ senshuAbil = konshuAbil # last weeks Ability modifier
 
-        "[Ability]"
+        "[week_costs]"
+        call costings
 
         if week_count == 1:
             jump beginning
         elif week_count == 25:
             "Half year ceremony"
+            jump getTeikiken
         elif week_count == 51:
             "School Graduation ceremony"
         elif week_count in [15,24,38,50]:
@@ -171,9 +179,11 @@ label looper:
             "JLPT"
         else:
             #studying week
+            $ daysClass = 5
             if week_count in [17,29,32,42,46]:
                 #flavour text for long weekened
                 "Long weekend"
+                $ daysClass = 4
             jump timetable #Then it jumps to studyCal before jumping back to looper here
     
     # If there has been 52 weeks already, the game ends with you stuck in Japan?

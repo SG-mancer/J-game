@@ -152,3 +152,32 @@ label timetable:
     jump studyCal
     
     return
+
+label costings:
+    # Cost of train to class - if no teikiken rail pass
+    if teikiken == False:
+        $ calcY = daysClass * 2 * stnTcst[homeStn]
+        "[calcY] for trains"
+        $ spentY += calcY
+        $ yenYen -= calcY
+    
+    # Cost of rent
+    $ spentY += 12500
+    $ yenYen -= 12500
+
+    # Deduct the other costs of the week
+    "[week_costs] costs for the week"
+    $ yenYen -= week_costs
+    $ spentY += week_costs
+
+    # Add income from part time job
+
+    # Check if about to become poor
+    if yenYen < ((52-week_count)*25000):
+        $ calcY = yenYen / (52-week_count)
+        "Warning you have [yenYen] remaining.\nIt usually costs 25000 a week for rent and food.\n\nYou have [calcY] a week remaining!"
+
+
+    # Go to start of week
+    jump looper
+    return
