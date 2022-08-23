@@ -18,6 +18,15 @@ label studyCal:
                 phys += 1
                 ment += 1
 
+            elif x == 'clubbing':
+                #
+                soci -= 1
+                phys -= 1
+
+            elif x == 'freeBoard':
+                #
+                soci -= 1
+
             elif x == 'jog':
                 # jogging clears your head
                 soci += 1
@@ -28,6 +37,20 @@ label studyCal:
                 else:
                     phys -= 1
 
+            elif x == 'library':
+                #6,
+                soci -= 1
+                ment -= 1 
+            
+            elif x == 'gradedReader':
+                #3,
+                ment -= 1
+
+
+            elif x == 'computerGames':
+                # Playing computer games (no cost)
+                ""
+            
             elif x == 'datingApp':
                 # Matches - a dating app (Tinder parody). In Aus you barely matched, but in Japan you get a few matches and can chat will girls
                 soci -= 1
@@ -35,44 +58,10 @@ label studyCal:
                     # If more than 2 times using app you can start dating
                     "hi"
 
-            elif x == 'computerGames':
-                # Playing computer games
-                ""
-            
             elif x == 'shopping':
                 # Go shopping on the weekends
                 phys -= 1
                 soci -= 1
-            
-            elif x == 'clubbing':
-                # Go clubbing on the weekends
-                phys -= 1
-                soci -= 1
-
-            elif x == 'SRS_kanji':
-                # Spaced Repetition Kanji - you have 2 methods, RTK, School Kanji List - it is dificult, improves Reading, (and Vocab or Grammar if 2 weeks in row)
-                if listRTK:
-                    # If you chose the RTK list this list costs extra mental fatigue
-                    ment -= 1
-            
-                if 'SRS_kanji' in senshuStudy:
-                    ment -= 1
-                    if sMCounts % 3:
-                        konshuAbil[0] += 1
-                    else:
-                        konshuAbil[1] += 1
-                else:
-                    ment -= 2
-                konshuAbil[2] += 1
-
-            elif x == 'SRS_vocab':
-                # Spaced Repetition Vocabularly - needs to be used in conjuction with Vocab collectors
-                if 'SRS_vocab' in senshuStudy:
-                    ment -= 1
-                else:
-                    ment -= 2
-                konshuAbil[0] += 1
-                konshuAbil[2] += 1
 
             elif x == 'SRS_convo':
                 # Spaced Repetition Conversation - improves Writing/Speaking, Vocab (and Grammar if done 2 weeks in a row)
@@ -84,10 +73,45 @@ label studyCal:
                 konshuAbil[4] += 1
                 konshuAbil[0] += 1
 
+            elif x == 'SRS_kanjiK':
+                # Spaced Repetition Kanji - School Kanji List - it is dificult, improves Reading, (and Vocab or Grammar if 2 weeks in row)
+                if 'SRS_kanji' in senshuStudy:
+                    ment -= 1
+                    if sMCounts % 2:
+                        konshuAbil[0] += 1
+                    else:
+                        konshuAbil[1] += 1
+                else:
+                    ment -= 2
+                konshuAbil[2] += 1
+
+            elif x == 'SRS_kanjiX':
+                # Spaced Repetition Kanji RTK is more difiucult, and just gives you Reading
+                if 'SRS_kanji' in senshuStudy:
+                    ment -= 2
+                else:
+                    ment -= 3
+                konshuAbil[2] += 1
+
+            elif x == 'SRS_vocab':
+                # Spaced Repetition Vocabularly - needs to be used in conjuction with Vocab collectors
+                if 'SRS_vocab' in senshuStudy:
+                    ment -= 1
+                else:
+                    ment -= 2
+                konshuAbil[0] += 1
+                konshuAbil[2] += 1
+
             elif x == 'workbook':
                 # Do extra homework from a workbook - improves vocab, grammar?
                 ment -= 1
                 konshuAbil[0] += 1
+            
+            elif x == 'JLPT_drill':
+                # Do quiz/drills for JLPT - improves your reading/grammar
+                ment -= 1
+                konshuAbil[2] += 1
+                konshuAbil[1] += 1
 
             elif x == 'text-book':
                 # Read forward in the textbook - improves grammar and reading
@@ -95,12 +119,28 @@ label studyCal:
                 konshuAbil[1] += 1
                 konshuAbil[2] += 1
 
-            elif x == 'JLPT_drill':
-                # Do quiz/drills for JLPT - improves your reading/grammar
-                ment -= 1
-                konshuAbil[2] += 1
-                konshuAbil[1] += 1
             
+            elif x == 'shadowing':
+                #6,
+                soci -= 1
+                ment -= 1
+                
+            elif x == 'langCircle':
+                #1,
+                soci -= 1 
+                
+            elif x == 'manga':
+                #3,
+                ment -= 1
+            
+            elif x == 'bikeTouring':
+                #4,
+                soci -= 1
+                phys -= 1
+                
+            elif x == 'tutor':
+                #1
+                soci -= 1
             
             # Each turn check Fatigue Stats are not above maximum
             if soci > max_stat:

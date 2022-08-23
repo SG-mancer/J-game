@@ -102,22 +102,31 @@ label start:
     $ wkendMeths = ['shopping','computerGames'] #The options available to player at the weekend starting
 
     # Count how often each choice is made
-    $ sMCounts = {'nap':0, 'clubbing':0, 'jog':0, 'computerGames':0, 'datingApp':0, 'shopping':0, 'SRS_convo':0, 'SRS_kanji':0, 'SRS_vocab':0, 'workbook':0, 'JLPT_drill':0, 'text-book':0, '0':0}
+    $ sMCounts = {'nap':0, 'clubbing':0, 'freeBoard':0, 'jog':0, 'library':0, 'gradedReader':0, 'computerGames':0, 'datingApp':0, 'shopping':0, 'SRS_convo':0, 'SRS_kanjiK':0, 'SRS_kanjiX':0, 'SRS_vocab':0, 'workbook':0, 'JLPT_drill':0, 'text-book':0, 'shadowing':0, 'langCircle':0, 'manga':0, 'bikeTouring':0, 'tutor':0, '0':0}
     # focus colour for each choice 0- none/black, 1- soci/blue, 2- phys/green, 3- ment/red, 4- soci+phys/cyan, 5- phys+ment/yellow, 6- soci+ment/magenta, 7- soci+phys+ment/white
-    $ sMfocus = {'nap':0, 'clubbing':4, 'jog':2, 'computerGames':0, 'datingApp':1, 'shopping':4, 'SRS_convo':3, 'SRS_kanji':3, 'SRS_vocab':3, 'workbook':3, 'JLPT_drill':3, 'text-book':3, '0':0}
+    $ sMfocus = {'nap':0, 'clubbing':4, 'freeBoard':1, 'jog':2, 'library':6, 'gradedReader':3, 'computerGames':0, 'datingApp':1, 'shopping':4, 'SRS_convo':3, 'SRS_kanjiK':3, 'SRS_kanjiX':3, 'SRS_vocab':3, 'workbook':3, 'JLPT_drill':3, 'text-book':3, 'shadowing':6, 'langCircle':1, 'manga':3, 'bikeTouring':4, 'tutor':1, '0':0}
     # study method flavour text
     $ sMflav = {'nap':'Take a nap to recharge your batteries.', 
-    'clubbing':'', 
-    'jog':'Go for a 40min jog to lower your stress levels.', 
-    'computerGames':'Stay at home and play some games on your computer.', 
-    'datingApp':'', 
-    'shopping':'Walk around the shopping district, maybe practice some Japanese, or invest in a new hobby.', 
-    'SRS_convo':'', 
-    'SRS_kanji':'', 
-    'SRS_vocab':'', 
-    'workbook':'', 
-    'JLPT_drill':'', 
-    'text-book':'Read the next chapter or two in your textbook.', 
+    'clubbing':'Head out to Roppongi.',
+    'freeBoard':'Meet up with travellers couchsurf, and find cheap/free rooms and board around the world.',
+    'library': 'Visit your local library, to sit and study or read books at your level.',
+    'jog':'A 40min jog to lower your stress levels, and invigorate your to study harder.',
+    'gradedReader':'Read a short story or article to improve your vocab and reading ability.', 
+    'computerGames':'Stay at home, play some games and daydream.', 
+    'datingApp':'Match a very popular dating app that lets you swipe to link with women, use it to practice conversation or try arrange a date.', 
+    'shopping':'Walk around the shopping district, maybe practice Japanese with staff, or invest in a new hobby.', 
+    'SRS_convo':'Spaced Repetiton System, conversation phrases and words to practice day to day conversations.', 
+    'SRS_kanjiK':'Spaced Repetiton System, learn the school (Kyōiku) Kanji in the same order as Japanese children.',
+    'SRS_kanjiX':'Spaced Repetiton System, Learn a keyword for every Kanji based on a list from a book called Never Forget Kanji by Sensei H.',
+    'SRS_vocab':'Spaced Repetiton System, vocabularly builder focusing on topics like locations, body parts etc.', 
+    'workbook':'Do more exercises from this extra workbook.', 
+    'JLPT_drill':'Practice JLPT questions with a drill book.',
+    'text-book':'Read the next chapter or two and do exercises from your textbook.',
+    'shadowing':'Like Karaoke but for books. Read along with audio to improve your reading, listening and speaking skills.'
+    'langCircle':'A weekend class arranged by the Language Teaching department of Waseda.',
+    'manga':'Read manga to try improve your vocab and language skills.',
+    'bikeTouring':'Ride around Tokyo and out of town to visit new places and meet people.',
+    'tutor':'Private 1 on 1 japanese lessons - either online or at a cafe. Where you get to choose what to focus on.',
     '0':''}
     $ statOP = 1 # count of how many times a stat is greater than the maximum (i.e. already max Ment but nap)
 
