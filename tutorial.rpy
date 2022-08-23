@@ -22,5 +22,50 @@ label tutorialTopics:
 # ---------------
 # This is how we can see what each study method does, and change new ones to our selection
 label pickMethods:
-    "Study Methods" 
+    nvl clear
+    $ x = 0
+    while x < len(studMeths):
+        $ tester = studMeths[x]
+        $ textY = sMflav[tester]
+        if sMfocus[tester] == 0:
+            "{color=#000000}{b}[tester]{/b}\n█ No{/color} stat cost\n[textY]"
+        elif sMfocus[tester] == 1:
+            "{color=#0000ff}{b}[tester]{/b}\n█ Social{/color} stat cost\n[textY]"
+        elif sMfocus[tester] == 2:
+            "{color=#00ff00}{b}[tester]{/b}\n█ Physical{/color} stat cost\n[textY]"
+        elif sMfocus[tester] == 3:
+            "{color=#ff0000}{b}[tester]{/b}\n█ Mental{/color} stat cost\n[textY]"
+        elif sMfocus[tester] == 4:
+            "{color=#00ffff}{b}[tester]{/b}\n█{/color} {color=#0000ff}Social{/color} + {color=#00ff00}Physical{/color} stat cost\n[textY]"
+        elif sMfocus[tester] == 5:
+            "{color=#ffff00}{b}[tester]{/b}\n█{/color} {color=#00ff00}Physica{/color} + {color=#ff0000}Mental{/color} stat cost\n[textY]"
+        elif sMfocus[tester] == 6:
+            "{color=#ff00ff}{b}[tester]{/b}\n█{/color} {color=#0000ff}SociaRl{/color} + {color=#ff0000}Mental{/color} stat cost\n[textY]"
+        else:
+            "{color=#ffffff}{b}[tester]{/b}\n█{/color} {color=#0000ff}Social{/color} + {color=#00ff00}Physical{/color} + {color=#ff0000}Mental{/color} stat cost\n[textY]"
+        $ x += 1
+
+    $ x = 0
+    while x < len(wkendMeths):
+        $ tester = wkendMeths[x]
+        $ textY = sMflav[tester]
+        if sMfocus[tester] == 0:
+            "{color=#000000}{b}[tester]{/b}\n█ No{/color} stat cost\n[textY]"
+        elif sMfocus[tester] == 1:
+            "{color=#0000ff}{b}[tester]{/b}\n█ Social{/color} stat cost\n[textY]"
+        elif sMfocus[tester] == 2:
+            "{color=#00ff00}{b}[tester]{/b}\n█ Physical{/color} stat cost\n[textY]"
+        elif sMfocus[tester] == 3:
+            "{color=#ff0000}{b}[tester]{/b}\n█ Mental{/color} stat cost\n[textY]"
+        elif sMfocus[tester] == 4:
+            "{color=#00ffff}{b}[tester]{/b}\n█{/color} {color=#0000ff}Social{/color} + {color=#00ff00}Physical{/color} stat cost\n[textY]"
+        elif sMfocus[tester] == 5:
+            "{color=#ffff00}{b}[tester]{/b}\n█{/color} {color=#00ff00}Physica{/color} + {color=#ff0000}Mental{/color} stat cost\n[textY]"
+        elif sMfocus[tester] == 6:
+            "{color=#ff00ff}{b}[tester]{/b}\n█{/color} {color=#0000ff}Social{/color} + {color=#ff0000}Mental{/color} stat cost\n[textY]"
+        else:
+            "{color=#ffffff}{b}[tester]{/b}\n█{/color} {color=#0000ff}Social{/color} + {color=#00ff00}Physical{/color} + {color=#ff0000}Mental{/color} stat cost\n[textY]"
+        $ x += 1
+        
+
     jump timetable
